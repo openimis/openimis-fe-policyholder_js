@@ -3,7 +3,7 @@ import { withModulesManager, formatMessageWithValues, withHistory, historyPush }
 import { injectIntl } from "react-intl";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { withTheme, withStyles } from "@mui/styles";
 import PolicyHolderForm from "../components/PolicyHolderForm";
 import { createPolicyHolder, updatePolicyHolder } from "../actions";
 import {

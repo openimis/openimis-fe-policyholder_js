@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Tab, Grid, Typography } from "@material-ui/core";
+import { Tab, Grid, Typography } from "@mui/material";
 import { formatMessage, PublishedComponent, FormattedMessage } from "@openimis/fe-core";
 import {
     RIGHT_POLICYHOLDERINSUREE_CREATE,

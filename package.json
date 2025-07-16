@@ -27,7 +27,14 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/runtime": "^7.9.6",
     "@vitejs/plugin-react": "^4.0.0",
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "vite-plugin-svgr": "^4.3.0",
+    "@mui/material": "^5.15.14",
+    "@mui/icons-material": "^5.14.17",
+    "@mui/lab": "^5.0.0-alpha.147",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/styles": "^5.15.14"
   },
   "files": [
     "dist"

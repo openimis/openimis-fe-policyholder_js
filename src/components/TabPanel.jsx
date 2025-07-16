@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Typography, Box } from "@material-ui/core";
+import { Typography, Box } from "@mui/material";
 
 class TabPanel extends Component {
     render() {

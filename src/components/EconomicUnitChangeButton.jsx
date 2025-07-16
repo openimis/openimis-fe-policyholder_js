@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import { PinDrop } from '@material-ui/icons';
+import { makeStyles } from '@mui/styles';
+import { Button } from '@mui/material';
+import { PinDrop } from '@mui/icons-material';
 
 import { useTranslations, useModulesManager } from '@openimis/fe-core';
 import { MODULE_NAME, RIGHT_VIEW_EU_MODAL } from '../constants';

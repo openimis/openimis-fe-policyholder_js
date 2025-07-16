@@ -12,8 +12,8 @@ import {
   PublishedComponent,
   decodeId,
 } from "@openimis/fe-core";
-import { IconButton } from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchPolicyHolderUsers, deletePolicyHolderUser } from "../actions";

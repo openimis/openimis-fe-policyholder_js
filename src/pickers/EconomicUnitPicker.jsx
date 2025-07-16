@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 
 import { useModulesManager, Autocomplete } from '@openimis/fe-core';
 import { fetchPolicyHolderUsers as fetchEconomicUnits } from '../actions';

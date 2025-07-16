@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 import { injectIntl } from 'react-intl';
 import { withModulesManager, formatMessage, TextInput, PublishedComponent } from "@openimis/fe-core";
-import { Grid, FormControlLabel, Checkbox } from "@material-ui/core";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { Grid, FormControlLabel, Checkbox } from "@mui/material";
+import { withTheme, withStyles } from "@mui/styles";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, DATE_TO_DATETIME_SUFFIX, CONTAINS_LOOKUP } from "../constants"
 
 const styles = theme => ({

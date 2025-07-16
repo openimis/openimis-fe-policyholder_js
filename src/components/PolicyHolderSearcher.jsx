@@ -14,9 +14,9 @@ import PolicyHolderFilter from "./PolicyHolderFilter";
 import { fetchPolicyHolders, deletePolicyHolder } from "../actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { IconButton, Tooltip } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { IconButton, Tooltip } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import {
   ZERO,
   MAX_CLIENTMUTATIONLABEL_LENGTH,

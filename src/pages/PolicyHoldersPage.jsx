@@ -10,7 +10,7 @@ import {
   clearCurrentPaginationPage,
 } from "@openimis/fe-core";
 import { injectIntl } from "react-intl";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { withTheme, withStyles } from "@mui/styles";
 import { connect } from "react-redux";
 import {
   RIGHT_POLICYHOLDER_SEARCH,
@@ -18,8 +18,8 @@ import {
   RIGHT_POLICYHOLDER_UPDATE,
   RIGHT_PORTALPOLICYHOLDER_SEARCH,
 } from "../constants";
-import { Fab } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import { Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { decodeId } from "@openimis/fe-core";
 
 const styles = (theme) => ({

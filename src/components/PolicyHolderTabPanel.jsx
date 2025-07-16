@@ -1,8 +1,8 @@
 import React from "react";
-import { Paper, Grid } from "@material-ui/core";
+import { Paper, Grid } from "@mui/material";
 import { withModulesManager, FormPanel, Contributions } from "@openimis/fe-core";
 import { injectIntl } from "react-intl";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { withTheme, withStyles } from "@mui/styles";
 import {
     RIGHT_POLICYHOLDERINSUREE_SEARCH,
     POLICYHOLDERINSUREE_TAB_VALUE,

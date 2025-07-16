@@ -6,7 +6,7 @@ import {
   clearCurrentPaginationPage,
 } from "@openimis/fe-core";
 import { injectIntl } from "react-intl";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { withTheme, withStyles } from "@mui/styles";
 import { connect } from "react-redux";
 import PolicyHolderUserSearcher from "../components/PolicyHolderUserSearcher";
 import CreatePolicyHolderUserDialog from "../dialogs/CreatePolicyHolderUserDialog";

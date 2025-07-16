@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import AddIcon from "@material-ui/icons/Add";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import AddIcon from "@mui/icons-material/Add";
 import {
     FormattedMessage,
     formatMessage,
@@ -12,9 +12,9 @@ import {
     PublishedComponent,
     decodeId
 } from "@openimis/fe-core";
-import { Fab, Grid, Tooltip } from "@material-ui/core";
+import { Fab, Grid, Tooltip } from "@mui/material";
 import PolicyHolderPicker from "../pickers/PolicyHolderPicker";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { withTheme, withStyles } from "@mui/styles";
 import { createPolicyHolderUser } from "../actions";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";

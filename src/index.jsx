@@ -1,6 +1,6 @@
 import React from "react";
-import BusinessIcon from "@material-ui/icons/Business";
-import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
+import BusinessIcon from "@mui/icons-material/Business";
+import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 import { FormattedMessage } from "@openimis/fe-core";
 import messages_en from "./translations/en.json";
 import PolicyHoldersPage from "./pages/PolicyHoldersPage";
