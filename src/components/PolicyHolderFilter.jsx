@@ -1,18 +1,17 @@
 import React, { Component } from "react"
 import { injectIntl } from 'react-intl';
+import { styled } from "@mui/material/styles";
 import { withModulesManager, formatMessage, TextInput, PublishedComponent } from "@openimis/fe-core";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
-import { withTheme, withStyles } from "@mui/styles";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, DATE_TO_DATETIME_SUFFIX, CONTAINS_LOOKUP } from "../constants"
 
-const styles = theme => ({
-    form: {
-        padding: 0
-    },
-    item: {
-        padding: theme.spacing(1)
-    }
-});
+const StyledForm = styled('div')(({ theme }) => ({
+  padding: 0
+}));
+
+const StyledItem = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1)
+}));
 
 class PolicyHolderFilter extends Component {
     _filterValue = k => {
@@ -56,10 +55,10 @@ class PolicyHolderFilter extends Component {
     }
 
     render() {
-        const { intl, classes, filters, onChangeFilters } = this.props;
+        const { intl, filters, onChangeFilters } = this.props;
         return (
-            <Grid container className={classes.form}>
-                <Grid item xs={2} className={classes.item}>
+            <Grid container component={StyledForm}>
+                <Grid item xs={2} component={StyledItem}>
                     <TextInput
                         module="policyHolder"
                         label="code"
@@ -67,7 +66,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeStringFilter('code', v, CONTAINS_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <TextInput
                         module="policyHolder"
                         label="tradeName"
@@ -84,7 +83,7 @@ class PolicyHolderFilter extends Component {
                         anchor="parentLocation"
                     />
                 </Grid>
-                <Grid item xs={3} className={classes.item}>
+                <Grid item xs={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="policyHolder.LegalFormPicker"
                         module="policyHolder"
@@ -95,7 +94,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeFilter('legalForm', v)}
                     />
                 </Grid>
-                <Grid item xs={3} className={classes.item}>
+                <Grid item xs={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="policyHolder.ActivityCodePicker"
                         module="policyHolder"
@@ -106,7 +105,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeFilter('activityCode', v)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -115,7 +114,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -124,7 +123,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}
@@ -139,4 +138,4 @@ class PolicyHolderFilter extends Component {
     }
 }
 
-export default withModulesManager(injectIntl(withTheme(withStyles(styles)(PolicyHolderFilter))));
+export default withModulesManager(injectIntl(PolicyHolderFilter));

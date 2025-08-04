@@ -7,16 +7,16 @@ import DialogTitle from "@mui/material/DialogTitle";
 import AddIcon from "@mui/icons-material/Add";
 import { FormattedMessage, formatMessageWithValues, PublishedComponent } from "@openimis/fe-core";
 import { Fab, Grid } from "@mui/material";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { createPolicyHolderContributionPlanBundle } from "../actions";
 import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ZERO, MAX_CLIENTMUTATIONLABEL_LENGTH } from "../constants"
 
-const styles = theme => ({
-    item: theme.paper.item
-});
+const StyledItem = styled('div')(({ theme }) => ({
+  ...theme.paper.item
+}));
 
 class CreatePolicyHolderContributionPlanBundleDialog extends Component {
     constructor(props) {
@@ -74,7 +74,6 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         const { open, policyHolderContributionPlanBundle } = this.state;
         return (
             <Fragment>
@@ -89,8 +88,8 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
                         <FormattedMessage module="policyHolder" id="policyHolderContributionPlanBundle.createPolicyHolderContributionPlanBundle" />
                     </DialogTitle>
                     <DialogContent>
-                        <Grid container direction="column" className={classes.item}>
-                            <Grid item className={classes.item}>
+                        <Grid container direction="column" component={StyledItem}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="contributionPlan.ContributionPlanBundlePicker"
                                     withNull={false}
@@ -99,7 +98,7 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
                                     onChange={v => this.updateAttribute('contributionPlanBundle', v)}
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -108,7 +107,7 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
                                     onChange={v => this.updateAttribute('dateValidFrom', v)}
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -136,4 +135,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderContributionPlanBundle }, dispatch);
 };
 
-export default injectIntl(withTheme(withStyles(styles)(connect(null, mapDispatchToProps)(CreatePolicyHolderContributionPlanBundleDialog))));
+export default injectIntl(connect(null, mapDispatchToProps)(CreatePolicyHolderContributionPlanBundleDialog));

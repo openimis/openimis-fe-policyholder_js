@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { injectIntl } from "react-intl";
 import _ from "lodash";
 
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 
 import {
   Form,
@@ -25,12 +25,21 @@ import {
 import PolicyHolderGeneralInfoPanel from "./PolicyHolderGeneralInfoPanel";
 import PolicyHolderTabPanel from "./PolicyHolderTabPanel";
 
-const styles = (theme) => ({
-  paper: theme.paper.paper,
-  paperHeader: theme.paper.header,
-  paperHeaderAction: theme.paper.action,
-  item: theme.paper.item,
-});
+const StyledPaper = styled('div')(({ theme }) => ({
+  ...theme.paper.paper,
+}));
+
+const StyledPaperHeader = styled('div')(({ theme }) => ({
+  ...theme.paper.header,
+}));
+
+const StyledPaperHeaderAction = styled('div')(({ theme }) => ({
+  ...theme.paper.action,
+}));
+
+const StyledItem = styled('div')(({ theme }) => ({
+  ...theme.paper.item,
+}));
 
 const jsonFields = ["address", "contactName", "bankAccount"];
 
@@ -220,11 +229,7 @@ const mapDispatchToProps = (dispatch) => {
 export default withHistory(
   withModulesManager(
     injectIntl(
-      withTheme(
-        withStyles(styles)(
-          connect(mapStateToProps, mapDispatchToProps)(PolicyHolderForm)
-        )
-      )
+      connect(mapStateToProps, mapDispatchToProps)(PolicyHolderForm)
     )
   )
 );

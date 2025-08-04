@@ -3,7 +3,7 @@ import { withModulesManager, formatMessageWithValues, withHistory, historyPush }
 import { injectIntl } from "react-intl";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import PolicyHolderForm from "../components/PolicyHolderForm";
 import { createPolicyHolder, updatePolicyHolder } from "../actions";
 import {
@@ -14,9 +14,9 @@ import {
     RIGHT_PORTALPOLICYHOLDER_SEARCH
 } from "../constants";
 
-const styles = theme => ({
-    page: theme.page,
-});
+const StyledPage = styled('div')(({ theme }) => ({
+  ...theme.page,
+}));
 
 class PolicyHolderPage extends Component {
     back = () => {
@@ -63,11 +63,11 @@ class PolicyHolderPage extends Component {
     }
 
     render() {
-        const { classes, rights, policyHolderId } = this.props;
+        const { rights, policyHolderId } = this.props;
         return (
             (rights.includes(!!policyHolderId ? RIGHT_POLICYHOLDER_UPDATE : RIGHT_POLICYHOLDER_CREATE) ||
                 rights.includes(RIGHT_PORTALPOLICYHOLDER_SEARCH)) && (
-                <div className={classes.page}>
+                <StyledPage>
                     <PolicyHolderForm
                         policyHolderId={policyHolderId}
                         back={this.back}
@@ -75,7 +75,7 @@ class PolicyHolderPage extends Component {
                         titleParams={this.titleParams}
                         rights={rights}
                     />
-                </div>
+                </StyledPage>
             )
         )
     }
@@ -90,4 +90,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolder, updatePolicyHolder }, dispatch);
 };
 
-export default withHistory(withModulesManager(injectIntl(withTheme(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderPage))))));
+export default withHistory(withModulesManager(injectIntl(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderPage))));

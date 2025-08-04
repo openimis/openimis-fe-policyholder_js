@@ -14,7 +14,7 @@ import {
 } from "@openimis/fe-core";
 import { Fab, Grid, Tooltip } from "@mui/material";
 import PolicyHolderPicker from "../pickers/PolicyHolderPicker";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { createPolicyHolderUser } from "../actions";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
@@ -24,10 +24,13 @@ import {
     MAX_CLIENTMUTATIONLABEL_LENGTH
 } from "../constants";
 
-const styles = theme => ({
-    item: theme.paper.item,
-    fab: theme.fab
-});
+const StyledItem = styled('div')(({ theme }) => ({
+  ...theme.paper.item
+}));
+
+const StyledFab = styled('div')(({ theme }) => ({
+  ...theme.fab
+}));
 
 class CreatePolicyHolderUserDialog extends Component {
     state = {
@@ -80,7 +83,7 @@ class CreatePolicyHolderUserDialog extends Component {
     };
 
     render() {
-        const { intl, classes, tabView = false, predefinedPolicyHolderId = null } = this.props;
+        const { intl, tabView = false, predefinedPolicyHolderId = null } = this.props;
         const { open, policyHolderUser } = this.state;
         return (
             <Fragment>
@@ -89,21 +92,21 @@ class CreatePolicyHolderUserDialog extends Component {
                         <AddIcon />
                     </Fab>
                 ) : (
-                    <div className={classes.fab}>
+                    <StyledFab>
                         <Tooltip title={formatMessage(intl, "policyHolder", "policyHolderUser.createPolicyHolderUser")}>
                             <Fab color="primary" onClick={this.handleOpen}>
                                 <AddIcon />
                             </Fab>
                         </Tooltip>
-                    </div>
+                    </StyledFab>
                 )}
                 <Dialog open={open} onClose={this.handleClose}>
                     <DialogTitle>
                         <FormattedMessage module="policyHolder" id="policyHolderUser.createPolicyHolderUser" />
                     </DialogTitle>
                     <DialogContent>
-                        <Grid container direction="column" className={classes.item}>
-                            <Grid item className={classes.item}>
+                        <Grid container direction="column" component={StyledItem}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="admin.UserPicker"
                                     module="policyHolder"
@@ -112,7 +115,7 @@ class CreatePolicyHolderUserDialog extends Component {
                                     required
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PolicyHolderPicker
                                     module="policyHolder"
                                     value={!!policyHolderUser.policyHolder && policyHolderUser.policyHolder}
@@ -121,7 +124,7 @@ class CreatePolicyHolderUserDialog extends Component {
                                     required
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -130,7 +133,7 @@ class CreatePolicyHolderUserDialog extends Component {
                                     required
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -170,6 +173,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderUser }, dispatch);
 };
 
-export default injectIntl(
-    withTheme(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(CreatePolicyHolderUserDialog)))
-);
+export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(CreatePolicyHolderUserDialog));

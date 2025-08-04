@@ -5,8 +5,8 @@ import {
     PublishedComponent,
     decodeId,
 } from "@openimis/fe-core";
-import { Grid, FormControlLabel, Checkbox } from "@material-ui/core";
-import { withTheme, withStyles } from "@material-ui/core/styles";
+import { Grid, FormControlLabel, Checkbox } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import {
     GREATER_OR_EQUAL_LOOKUP,
     LESS_OR_EQUAL_LOOKUP,
@@ -14,14 +14,13 @@ import {
 } from "../constants";
 import PolicyHolderPicker from "../pickers/PolicyHolderPicker";
 
-const styles = theme => ({
-    form: {
-        padding: 0
-    },
-    item: {
-        padding: theme.spacing(1)
-    }
-});
+const StyledForm = styled('div')(({ theme }) => ({
+  padding: 0
+}));
+
+const StyledItem = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1)
+}));
 
 class PolicyHolderUserFilter extends Component {
     componentDidMount() {
@@ -69,10 +68,10 @@ class PolicyHolderUserFilter extends Component {
     }
 
     render() {
-        const { intl, classes, onChangeFilters } = this.props;
+        const { intl, onChangeFilters } = this.props;
         return (
-            <Grid container className={classes.form}>
-                <Grid item xs={3} className={classes.item}>
+            <Grid container component={StyledForm}>
+                <Grid item xs={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="admin.UserPicker"
                         module="policyHolder"
@@ -85,7 +84,7 @@ class PolicyHolderUserFilter extends Component {
                     />
                 </Grid>
                 {!this.isFilteredByDefaultPolicyHolder && (
-                    <Grid item xs={3} className={classes.item}>
+                    <Grid item xs={3} component={StyledItem}>
                         <PolicyHolderPicker
                             withNull
                             nullLabel={formatMessage(intl, "policyHolder", "any")}
@@ -98,7 +97,7 @@ class PolicyHolderUserFilter extends Component {
                         />
                     </Grid>
                 )}
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -107,7 +106,7 @@ class PolicyHolderUserFilter extends Component {
                         onChange={v => this._onChangeDateFilter("dateValidFrom", v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -116,7 +115,7 @@ class PolicyHolderUserFilter extends Component {
                         onChange={v => this._onChangeDateFilter("dateValidTo", v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue("isDeleted")}
@@ -131,4 +130,4 @@ class PolicyHolderUserFilter extends Component {
     }
 }
 
-export default injectIntl(withTheme(withStyles(styles)(PolicyHolderUserFilter)));
+export default injectIntl(PolicyHolderUserFilter);

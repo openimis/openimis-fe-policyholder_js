@@ -13,7 +13,7 @@ import {
     Contributions
 } from "@openimis/fe-core";
 import { Fab, Grid } from "@mui/material";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { createPolicyHolderInsuree } from "../actions";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
@@ -27,9 +27,9 @@ import {
     RIGHT_CALCULATION_WRITE
 } from "../constants";
 
-const styles = theme => ({
-    item: theme.paper.item
-});
+const StyledItem = styled('div')(({ theme }) => ({
+  ...theme.paper.item
+}));
 
 class CreatePolicyHolderInsureeDialog extends Component {
     constructor(props) {
@@ -90,7 +90,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
     setJsonExtValid = (valid) => this.setState({ jsonExtValid: !!valid });
 
     render() {
-        const { intl, classes } = this.props;
+        const { intl } = this.props;
         const { open, policyHolderInsuree } = this.state;
         return (
             <Fragment>
@@ -105,8 +105,8 @@ class CreatePolicyHolderInsureeDialog extends Component {
                         <FormattedMessage module="policyHolder" id="policyHolderInsuree.createPolicyHolderInsuree" />
                     </DialogTitle>
                     <DialogContent>
-                        <Grid container direction="column" className={classes.item}>
-                            <Grid item className={classes.item}>
+                        <Grid container direction="column" component={StyledItem}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="insuree.InsureeChfIdPicker"
                                     required
@@ -114,7 +114,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
                                     onChange={v => this.updateAttribute('insuree', v)}
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PolicyHolderContributionPlanBundlePicker
                                     withNull={false}
                                     required
@@ -131,10 +131,10 @@ class CreatePolicyHolderInsureeDialog extends Component {
                                 requiredRights={[RIGHT_CALCULATION_WRITE]}
                                 value={!!policyHolderInsuree.jsonExt && policyHolderInsuree.jsonExt}
                                 onChange={this.updateAttribute}
-                                gridItemStyle={classes.item}
+                                gridItemStyle={StyledItem}
                                 setJsonExtValid={this.setJsonExtValid}
                             />
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -143,7 +143,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
                                     onChange={v => this.updateAttribute('dateValidFrom', v)}
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -171,4 +171,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderInsuree }, dispatch);
 };
 
-export default injectIntl(withTheme(withStyles(styles)(connect(null, mapDispatchToProps)(CreatePolicyHolderInsureeDialog))));
+export default injectIntl(connect(null, mapDispatchToProps)(CreatePolicyHolderInsureeDialog));

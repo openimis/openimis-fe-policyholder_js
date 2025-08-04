@@ -14,7 +14,7 @@ import {
 } from "@openimis/fe-core";
 import { IconButton, Grid, Tooltip } from "@mui/material";
 import PolicyHolderPicker from "../pickers/PolicyHolderPicker";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { updatePolicyHolderUser, replacePolicyHolderUser } from "../actions";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
@@ -24,10 +24,13 @@ import {
     MAX_CLIENTMUTATIONLABEL_LENGTH
 } from "../constants";
 
-const styles = theme => ({
-    item: theme.paper.item,
-    fab: theme.fab
-});
+const StyledItem = styled('div')(({ theme }) => ({
+  ...theme.paper.item
+}));
+
+const StyledFab = styled('div')(({ theme }) => ({
+  ...theme.fab
+}));
 
 class UpdatePolicyHolderUserDialog extends Component {
     state = {
@@ -92,14 +95,16 @@ class UpdatePolicyHolderUserDialog extends Component {
     policyHolderLabel = (policyHolder) => `${policyHolder.code} - ${policyHolder.tradeName}`;
 
     render() {
-        const { intl, classes, disabled, isReplacing = false, isPolicyHolderPredefined = false } = this.props;
+        const { intl, disabled, isReplacing = false, isPolicyHolderPredefined = false } = this.props;
         const { open, policyHolderUser } = this.state;
         return (
             <Fragment>
                 {isReplacing ? (
                     <Tooltip title={formatMessage(intl, "policyHolder", "replaceButton.tooltip")}>
                         <div>
-                            <IconButton onClick={this.handleOpen} disabled={disabled}>
+                            <IconButton
+                                onClick={this.handleOpen}
+                                disabled={disabled}>
                                 <NoteAddIcon />
                             </IconButton>
                         </div>
@@ -107,7 +112,9 @@ class UpdatePolicyHolderUserDialog extends Component {
                 ) : (
                     <Tooltip title={formatMessage(intl, "policyHolder", "editButton.tooltip")}>
                         <div>
-                            <IconButton onClick={this.handleOpen} disabled={disabled}>
+                            <IconButton
+                                onClick={this.handleOpen}
+                                disabled={disabled}>
                                 <EditIcon />
                             </IconButton>
                         </div>
@@ -118,42 +125,42 @@ class UpdatePolicyHolderUserDialog extends Component {
                         {isReplacing ? (
                             <FormattedMessage module="policyHolder" id="policyHolderUser.dialog.replace.title" />
                         ) : (
-                            <FormattedMessage module="policyHolder" id="policyHolderUser.dialog.update.title" />
+                            <FormattedMessage module="policyHolder" id="policyHolderUser.dialog.edit.title" />
                         )}
                     </DialogTitle>
                     <DialogContent>
-                        <Grid container direction="column" className={classes.item}>
-                            <Grid item className={classes.item}>
+                        <Grid container direction="column" component={StyledItem}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="admin.UserPicker"
                                     module="policyHolder"
                                     value={!!policyHolderUser.user && policyHolderUser.user}
                                     onChange={(v) => this.updateAttribute("user", v)}
+                                    readOnly={!isReplacing}
                                     required
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PolicyHolderPicker
                                     module="policyHolder"
-                                    withNull
-                                    nullLabel={formatMessage(intl, "policyHolder", "emptyLabel")}
                                     value={!!policyHolderUser.policyHolder && policyHolderUser.policyHolder}
                                     onChange={(v) => this.updateAttribute("policyHolder", v)}
-                                    readOnly={!!isPolicyHolderPredefined}
+                                    readOnly={isPolicyHolderPredefined}
                                     required
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
                                     label="policyHolderUser.dateValidFrom"
                                     value={!!policyHolderUser.dateValidFrom && policyHolderUser.dateValidFrom}
                                     onChange={(v) => this.updateAttribute("dateValidFrom", v)}
+                                    readOnly={!isReplacing}
                                     required
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -173,6 +180,7 @@ class UpdatePolicyHolderUserDialog extends Component {
                             disabled={!this.canSave()}
                             variant="contained"
                             color="primary"
+                            autoFocus
                         >
                             {isReplacing ? (
                                 <FormattedMessage module="policyHolder" id="dialog.replace" />
@@ -191,6 +199,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ updatePolicyHolderUser, replacePolicyHolderUser }, dispatch);
 };
 
-export default injectIntl(
-    withTheme(withStyles(styles)(connect(null, mapDispatchToProps)(UpdatePolicyHolderUserDialog)))
-);
+export default injectIntl(connect(null, mapDispatchToProps)(UpdatePolicyHolderUserDialog));

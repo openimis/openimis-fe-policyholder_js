@@ -2,26 +2,29 @@ import React from "react";
 import { Paper, Grid } from "@mui/material";
 import { withModulesManager, FormPanel, Contributions } from "@openimis/fe-core";
 import { injectIntl } from "react-intl";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import {
     RIGHT_POLICYHOLDERINSUREE_SEARCH,
     POLICYHOLDERINSUREE_TAB_VALUE,
     RIGHT_PORTALPOLICYHOLDERINSUREE_SEARCH
 } from "../constants";
 
-const styles = theme => ({
-    paper: theme.paper.paper,
-    tableTitle: theme.table.title,
-    tabs: {
-        padding: 0
-    },
-    selectedTab: {
-        borderBottom: "4px solid white"
-    },
-    unselectedTab: {
-        borderBottom: "4px solid transparent"
-    }
-});
+const StyledPaper = styled(Paper)(({ theme }) => ({
+  ...theme.paper.paper,
+}));
+
+const StyledTableTitle = styled('div')(({ theme }) => ({
+  ...theme.table.title,
+  padding: 0
+}));
+
+const StyledSelectedTab = styled('div')(({ theme }) => ({
+  borderBottom: "4px solid white"
+}));
+
+const StyledUnselectedTab = styled('div')(({ theme }) => ({
+  borderBottom: "4px solid transparent"
+}));
 
 const POLICYHOLDER_TABS_PANEL_CONTRIBUTION_KEY = "policyHolder.TabPanel.panel";
 const POLICYHOLDER_TABS_LABEL_CONTRIBUTION_KEY = "policyHolder.TabPanel.label";
@@ -40,17 +43,17 @@ class PolicyHolderTabPanel extends FormPanel {
 
     isSelected = value => value === this.state.value;
 
-    tabStyle = value => this.isSelected(value) ? this.props.classes.selectedTab : this.props.classes.unselectedTab;
+    tabStyle = value => this.isSelected(value) ? StyledSelectedTab : StyledUnselectedTab;
 
     handleChange = (_, value) => this.setState({ value });
 
     render() {
-        const { intl, rights, classes, edited, mandatoryFieldsEmpty } = this.props;
+        const { intl, rights, edited, mandatoryFieldsEmpty } = this.props;
         const { value } = this.state;
         const isTabsEnabled = !!edited && !!edited.id && !mandatoryFieldsEmpty;
         return (
-            <Paper className={classes.paper}>
-                <Grid container className={`${classes.tableTitle} ${classes.tabs}`}>
+            <StyledPaper>
+                <Grid container component={StyledTableTitle}>
                     <Contributions
                         contributionKey={POLICYHOLDER_TABS_LABEL_CONTRIBUTION_KEY}
                         intl={intl}
@@ -69,9 +72,9 @@ class PolicyHolderTabPanel extends FormPanel {
                     isTabsEnabled={isTabsEnabled}
                     policyHolder={edited}
                 />
-            </Paper>
+            </StyledPaper>
         )
     }
 }
 
-export default withModulesManager(injectIntl(withTheme(withStyles(styles)(PolicyHolderTabPanel))));
+export default withModulesManager(injectIntl(PolicyHolderTabPanel));

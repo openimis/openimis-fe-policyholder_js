@@ -10,7 +10,7 @@ import {
   DialogTitle,
   Link,
 } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 
 import {
   useTranslations,
@@ -21,22 +21,26 @@ import { saveEconomicUnit } from '../actions';
 import { ECONOMIC_UNIT_STORAGE_KEY, MODULE_NAME, REF_PUBLIC_GDPR_PAGE } from '../constants';
 import EconomicUnitPicker from '../pickers/EconomicUnitPicker';
 
-const useStyles = makeStyles((theme) => ({
-  primaryButton: theme.dialog.primaryButton,
-  secondaryButton: theme.dialog.secondaryButton,
-  dialogWidth: {
-    minWidth: '360px',
-  },
-  gdprLink: {
-    cursor: 'pointer',
-    fontWeight: 'bold',
-  },
+const StyledPrimaryButton = styled(Button)(({ theme }) => ({
+  ...theme.dialog.primaryButton,
+}));
+
+const StyledSecondaryButton = styled(Button)(({ theme }) => ({
+  ...theme.dialog.secondaryButton,
+}));
+
+const StyledDialogContent = styled(DialogContent)(({ theme }) => ({
+  minWidth: '360px',
+}));
+
+const StyledGdprLink = styled(Link)(({ theme }) => ({
+  cursor: 'pointer',
+  fontWeight: 'bold',
 }));
 
 const EconomicUnitDialog = ({ open, setEconomicUnitDialogOpen, history }) => {
   const modulesManager = useModulesManager();
   const dispatch = useDispatch();
-  const classes = useStyles();
   const { formatMessage, formatMessageWithValues } = useTranslations(
     MODULE_NAME,
     modulesManager
@@ -89,19 +93,18 @@ const EconomicUnitDialog = ({ open, setEconomicUnitDialogOpen, history }) => {
   return (
     <Dialog open={open} maxWidth='xs'>
       <DialogTitle>{formatMessage('selectEconomicUnit.title')}</DialogTitle>
-      <DialogContent className={classes.dialogWidth}>
+      <StyledDialogContent>
         <DialogContentText>
           <i>
             {formatMessageWithValues('selectEconomicUnit.description', {
               link: (
-                <Link
-                  className={classes.gdprLink}
+                <StyledGdprLink
                   underline='always'
                   color='primary'
                   onClick={handleGdprDownload}
                 >
                   {formatMessage('selectEconomicUnit.gdpr')}
-                </Link>
+                </StyledGdprLink>
               ),
             })}
           </i>
@@ -112,29 +115,27 @@ const EconomicUnitDialog = ({ open, setEconomicUnitDialogOpen, history }) => {
           onChange={onChange}
           label={formatMessage('EconomicUnitPicker.label')}
         />
-      </DialogContent>
+      </StyledDialogContent>
       <DialogActions>
         {!economicUnitsWithUser?.length && (
-          <Button
+          <StyledPrimaryButton
             onClick={onLogoutAction}
-            className={classes.primaryButton}
             disabled={
               fetchingEconomicUnitsWithUser || economicUnitsWithUser?.length
             }
           >
             {formatMessage('selectEconomicUnit.logout')}
-          </Button>
+          </StyledPrimaryButton>
         )}
-        <Button
+        <StyledPrimaryButton
           onClick={onConfirm}
           autoFocus
-          className={classes.primaryButton}
           disabled={
             fetchingEconomicUnitsWithUser || !economicUnitsWithUser?.length
           }
         >
           {formatMessage('selectEconomicUnit.confirm')}
-        </Button>
+        </StyledPrimaryButton>
       </DialogActions>
     </Dialog>
   );

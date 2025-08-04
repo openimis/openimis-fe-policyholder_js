@@ -28,7 +28,10 @@ export default defineConfig({
         'moment',
         'prop-types',
         /^react.*/,
-        /^redux.*/
+        /^redux.*/,
+        '@mui/material',
+        '@mui/icons-material',
+        '@mui/system'
       ],
       output: {
         globals: {

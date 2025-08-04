@@ -10,7 +10,7 @@ import {
   clearCurrentPaginationPage,
 } from "@openimis/fe-core";
 import { injectIntl } from "react-intl";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import {
   RIGHT_POLICYHOLDER_SEARCH,
@@ -22,10 +22,13 @@ import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { decodeId } from "@openimis/fe-core";
 
-const styles = (theme) => ({
-  page: theme.page,
-  fab: theme.fab,
-});
+const StyledPage = styled('div')(({ theme }) => ({
+  ...theme.page,
+}));
+
+const StyledFab = styled('div')(({ theme }) => ({
+  ...theme.fab,
+}));
 
 class PolicyHoldersPage extends Component {
   onAdd = () => {
@@ -74,11 +77,11 @@ class PolicyHoldersPage extends Component {
   };
 
   render() {
-    const { intl, classes, rights } = this.props;
+    const { intl, rights } = this.props;
     return (
       (rights.includes(RIGHT_POLICYHOLDER_SEARCH) ||
         rights.includes(RIGHT_PORTALPOLICYHOLDER_SEARCH)) && (
-        <div className={classes.page}>
+        <StyledPage>
           <Helmet
             title={formatMessage(
               this.props.intl,
@@ -93,14 +96,14 @@ class PolicyHoldersPage extends Component {
           />
           {rights.includes(RIGHT_POLICYHOLDER_CREATE) &&
             withTooltip(
-              <div className={classes.fab}>
+              <StyledFab>
                 <Fab color="primary" onClick={this.onAdd}>
                   <AddIcon />
                 </Fab>
-              </div>,
+              </StyledFab>,
               formatMessage(intl, "policyHolder", "createButton.tooltip")
             )}
-        </div>
+        </StyledPage>
       )
     );
   }
@@ -119,10 +122,6 @@ const mapDispatchToProps = (dispatch) =>
 
 export default withModulesManager(
   injectIntl(
-    withTheme(
-      withStyles(styles)(
-        connect(mapStateToProps, mapDispatchToProps)(PolicyHoldersPage)
-      )
-    )
+    connect(mapStateToProps, mapDispatchToProps)(PolicyHoldersPage)
   )
 );

@@ -1,20 +1,19 @@
 import React, { Component } from "react"
 import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
+import { styled } from "@mui/material/styles";
 import { withModulesManager, formatMessage, TextInput, PublishedComponent, decodeId } from "@openimis/fe-core";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
-import { withTheme, withStyles } from "@mui/styles";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, STARTS_WITH_LOOKUP, DATE_TO_DATETIME_SUFFIX } from "../constants"
 import PolicyHolderContributionPlanBundlePicker from "../pickers/PolicyHolderContributionPlanBundlePicker";
 
-const styles = theme => ({
-    form: {
-        padding: 0
-    },
-    item: {
-        padding: theme.spacing(1)
-    }
-});
+const StyledForm = styled('div')(({ theme }) => ({
+  padding: 0
+}));
+
+const StyledItem = styled('div')(({ theme }) => ({
+  padding: theme.spacing(1)
+}));
 
 class PolicyHolderInsureeFilter extends Component {
     _filterValue = k => {
@@ -58,10 +57,10 @@ class PolicyHolderInsureeFilter extends Component {
     }
 
     render() {
-        const { intl, classes, onChangeFilters, policyHolder } = this.props;
+        const { intl, onChangeFilters, policyHolder } = this.props;
         return (
-            <Grid container className={classes.form}>
-                <Grid item xs={3} className={classes.item}>
+            <Grid container component={StyledForm}>
+                <Grid item xs={3} component={StyledItem}>
                     <TextInput
                         module="policyHolder" 
                         label="insureeCHFID"
@@ -69,7 +68,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeStringFilter('insuree_ChfId', v, STARTS_WITH_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={3} className={classes.item}>
+                <Grid item xs={3} component={StyledItem}>
                     <PolicyHolderContributionPlanBundlePicker
                         withNull
                         nullLabel={formatMessage(intl, "policyHolder", "policyHolderContributionPlanBundle.any")}
@@ -82,7 +81,7 @@ class PolicyHolderInsureeFilter extends Component {
                         }])}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -91,7 +90,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -100,7 +99,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} className={classes.item}>
+                <Grid item xs={2} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}
@@ -119,4 +118,4 @@ const mapStateToProps = state => ({
     policyHolder: !!state.policyHolder.policyHolder ? state.policyHolder.policyHolder : null
 });
 
-export default withModulesManager(injectIntl(withTheme(withStyles(styles)(connect(mapStateToProps, null)(PolicyHolderInsureeFilter)))));
+export default withModulesManager(injectIntl(connect(mapStateToProps, null)(PolicyHolderInsureeFilter)));

@@ -15,7 +15,7 @@ import {
     Contributions
 } from "@openimis/fe-core";
 import { Tooltip, Grid, IconButton } from "@mui/material";
-import { withTheme, withStyles } from "@mui/styles";
+import { styled } from "@mui/material/styles";
 import { updatePolicyHolderInsuree, replacePolicyHolderInsuree } from "../actions";
 import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
@@ -30,9 +30,9 @@ import {
     RIGHT_CALCULATION_REPLACE
 } from "../constants";
 
-const styles = theme => ({
-    item: theme.paper.item
-});
+const StyledItem = styled('div')(({ theme }) => ({
+  ...theme.paper.item
+}));
 
 class UpdatePolicyHolderInsureeDialog extends Component {
     constructor(props) {
@@ -114,7 +114,7 @@ class UpdatePolicyHolderInsureeDialog extends Component {
     setJsonExtValid = (valid) => this.setState({ jsonExtValid: !!valid });
 
     render() {
-        const { intl, classes, disabled, isReplacing = false } = this.props;
+        const { intl, disabled, isReplacing = false } = this.props;
         const { open, policyHolderInsuree } = this.state;
         return (
             <Fragment>
@@ -148,15 +148,15 @@ class UpdatePolicyHolderInsureeDialog extends Component {
                         )}
                     </DialogTitle>
                     <DialogContent>
-                        <Grid container direction="column" className={classes.item}>
-                            <Grid item className={classes.item}>
+                        <Grid container direction="column" component={StyledItem}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="insuree.InsureeChfIdPicker"
                                     value={!!policyHolderInsuree.insuree && policyHolderInsuree.insuree}
                                     readOnly
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PolicyHolderContributionPlanBundlePicker
                                     required
                                     policyHolderId={!!policyHolderInsuree.policyHolder && decodeId(policyHolderInsuree.policyHolder.id)}
@@ -173,10 +173,10 @@ class UpdatePolicyHolderInsureeDialog extends Component {
                                 requiredRights={[isReplacing ? RIGHT_CALCULATION_REPLACE : RIGHT_CALCULATION_UPDATE]}
                                 value={!!policyHolderInsuree.jsonExt && policyHolderInsuree.jsonExt}
                                 onChange={this.updateAttribute}
-                                gridItemStyle={classes.item}
+                                gridItemStyle={StyledItem}
                                 setJsonExtValid={this.setJsonExtValid}
                             />
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -187,7 +187,7 @@ class UpdatePolicyHolderInsureeDialog extends Component {
                                     readOnly={!isReplacing}
                                 />
                             </Grid>
-                            <Grid item className={classes.item}>
+                            <Grid item component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -220,4 +220,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ updatePolicyHolderInsuree, replacePolicyHolderInsuree }, dispatch);
 };
 
-export default injectIntl(withTheme(withStyles(styles)(connect(null, mapDispatchToProps)(UpdatePolicyHolderInsureeDialog))));
+export default injectIntl(connect(null, mapDispatchToProps)(UpdatePolicyHolderInsureeDialog));
