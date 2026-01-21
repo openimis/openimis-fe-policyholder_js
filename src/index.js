@@ -88,7 +88,8 @@ const DEFAULT_CONFIG = {
                 [
                     RIGHT_POLICYHOLDER_SEARCH,
                     RIGHT_PORTALPOLICYHOLDER_SEARCH,
-                ].some(right => rights.includes(right))
+                ].some(right => rights.includes(right)),
+            id: 'insuree.policyholders',
         }
     ],
     "admin.MainMenu": [
