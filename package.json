@@ -12,8 +12,9 @@
   },
   "scripts": {
     "build": "vite build",
-    "prepare": "npm run build",
-    "start": "vite"
+    "start": "vite",
+    "format": "prettier src -w",
+    "prepare": "npm run build"
   },
   "peerDependency": {
     "react-intl": "^7.1.11"
