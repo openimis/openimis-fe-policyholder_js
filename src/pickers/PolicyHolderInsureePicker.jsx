@@ -63,4 +63,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ fetchPickerPolicyHolderInsurees }, dispatch);
 }
 
+export { PolicyHolderInsureePicker };
 export default withModulesManager(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderInsureePicker));

@@ -106,7 +106,7 @@ class CreatePolicyHolderUserDialog extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <Grid container direction="column" component={StyledItem}>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="admin.UserPicker"
                                     module="policyHolder"
@@ -115,7 +115,7 @@ class CreatePolicyHolderUserDialog extends Component {
                                     required
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PolicyHolderPicker
                                     module="policyHolder"
                                     value={!!policyHolderUser.policyHolder && policyHolderUser.policyHolder}
@@ -124,7 +124,7 @@ class CreatePolicyHolderUserDialog extends Component {
                                     required
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -133,7 +133,7 @@ class CreatePolicyHolderUserDialog extends Component {
                                     required
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -173,4 +173,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderUser }, dispatch);
 };
 
+export { StyledItem };
 export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(CreatePolicyHolderUserDialog));

@@ -262,4 +262,5 @@ const mapDispatchToProps = dispatch => {
         deletePolicyHolderContributionPlanBundle, coreConfirm }, dispatch);
 };
 
+export { DEFAULT_ORDER_BY };
 export default withModulesManager(injectIntl(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderContributionPlanBundleSearcher)));

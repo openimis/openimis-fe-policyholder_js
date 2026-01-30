@@ -74,7 +74,7 @@ class PolicyHolderUsersTab extends Component {
                                 rights.includes(right)
                             ) && (
                                 <Grid container justify="flex-end" alignItems="center" spacing={1}>
-                                    <Grid item>
+                                    <Grid>
                                         <Typography>
                                             <FormattedMessage
                                                 module="policyHolder"
@@ -82,7 +82,7 @@ class PolicyHolderUsersTab extends Component {
                                             />
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid>
                                         <CreatePolicyHolderUserDialog
                                             onSave={this.onSave}
                                             tabView

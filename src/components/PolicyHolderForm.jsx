@@ -226,6 +226,8 @@ const mapDispatchToProps = (dispatch) => {
   );
 };
 
+export { StyledPaper };
+export { PolicyHolderForm };
 export default withHistory(
   withModulesManager(
     injectIntl(

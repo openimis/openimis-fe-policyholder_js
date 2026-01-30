@@ -50,4 +50,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ fetchPickerPolicyHolders }, dispatch);
 };
 
+export { PolicyHolderPicker };
 export default connect(mapStateToProps, mapDispatchToProps)(PolicyHolderPicker);

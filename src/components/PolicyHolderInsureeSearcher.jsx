@@ -311,4 +311,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ fetchPolicyHolderInsurees, deletePolicyHolderInsuree, coreConfirm }, dispatch);
 };
 
+export { DEFAULT_ORDER_BY };
 export default withModulesManager(injectIntl(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderInsureeSearcher)));

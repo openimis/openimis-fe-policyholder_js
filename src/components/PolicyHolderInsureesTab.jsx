@@ -75,7 +75,7 @@ class PolicyHolderInsureesTab extends Component {
                                     alignItems="center"
                                     spacing={1}
                                 >
-                                    <Grid item>
+                                    <Grid>
                                         <Typography>
                                             <FormattedMessage
                                                 module="policyHolder"
@@ -83,7 +83,7 @@ class PolicyHolderInsureesTab extends Component {
                                             />
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid>
                                         <CreatePolicyHolderInsureeDialog
                                             policyHolder={policyHolder}
                                             onSave={this.onSave}

@@ -60,7 +60,7 @@ class PolicyHolderInsureeFilter extends Component {
         const { intl, onChangeFilters, policyHolder } = this.props;
         return (
             <Grid container component={StyledForm}>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <TextInput
                         module="policyHolder" 
                         label="insureeCHFID"
@@ -68,7 +68,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeStringFilter('insuree_ChfId', v, STARTS_WITH_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PolicyHolderContributionPlanBundlePicker
                         withNull
                         nullLabel={formatMessage(intl, "policyHolder", "policyHolderContributionPlanBundle.any")}
@@ -81,7 +81,7 @@ class PolicyHolderInsureeFilter extends Component {
                         }])}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -90,7 +90,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -99,7 +99,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}
@@ -118,4 +118,5 @@ const mapStateToProps = state => ({
     policyHolder: !!state.policyHolder.policyHolder ? state.policyHolder.policyHolder : null
 });
 
+export { StyledForm };
 export default withModulesManager(injectIntl(connect(mapStateToProps, null)(PolicyHolderInsureeFilter)));

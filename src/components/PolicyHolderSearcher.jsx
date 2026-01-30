@@ -326,6 +326,7 @@ const mapDispatchToProps = (dispatch) => {
   );
 };
 
+export { PolicyHolderSearcher };
 export default withModulesManager(
   injectIntl(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderSearcher))
 );

@@ -58,7 +58,7 @@ class PolicyHolderFilter extends Component {
         const { intl, filters, onChangeFilters } = this.props;
         return (
             <Grid container component={StyledForm}>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <TextInput
                         module="policyHolder"
                         label="code"
@@ -66,7 +66,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeStringFilter('code', v, CONTAINS_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <TextInput
                         module="policyHolder"
                         label="tradeName"
@@ -74,7 +74,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeStringFilter('tradeName', v, CONTAINS_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={8}>
+                <Grid size={8}>
                     <PublishedComponent
                         pubRef="location.DetailedLocationFilter"
                         withNull={true}
@@ -83,7 +83,7 @@ class PolicyHolderFilter extends Component {
                         anchor="parentLocation"
                     />
                 </Grid>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="policyHolder.LegalFormPicker"
                         module="policyHolder"
@@ -94,7 +94,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeFilter('legalForm', v)}
                     />
                 </Grid>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="policyHolder.ActivityCodePicker"
                         module="policyHolder"
@@ -105,7 +105,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeFilter('activityCode', v)}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -114,7 +114,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -123,7 +123,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={2} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}
@@ -138,4 +138,5 @@ class PolicyHolderFilter extends Component {
     }
 }
 
+export { StyledForm };
 export default withModulesManager(injectIntl(PolicyHolderFilter));

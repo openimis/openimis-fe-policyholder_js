@@ -51,4 +51,5 @@ class ActivityCodePicker extends Component {
     }
 }
 
+export { ActivityCodePicker };
 export default withModulesManager(injectIntl(ActivityCodePicker));

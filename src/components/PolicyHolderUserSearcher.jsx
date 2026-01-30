@@ -367,6 +367,8 @@ const mapDispatchToProps = (dispatch) => {
   );
 };
 
+export { DEFAULT_ORDER_BY };
+export { PolicyHolderUserSearcher };
 export default withModulesManager(
   injectIntl(
     connect(mapStateToProps, mapDispatchToProps)(PolicyHolderUserSearcher)

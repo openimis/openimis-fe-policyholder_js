@@ -149,14 +149,14 @@ class UpdatePolicyHolderInsureeDialog extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <Grid container direction="column" component={StyledItem}>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="insuree.InsureeChfIdPicker"
                                     value={!!policyHolderInsuree.insuree && policyHolderInsuree.insuree}
                                     readOnly
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PolicyHolderContributionPlanBundlePicker
                                     required
                                     policyHolderId={!!policyHolderInsuree.policyHolder && decodeId(policyHolderInsuree.policyHolder.id)}
@@ -176,7 +176,7 @@ class UpdatePolicyHolderInsureeDialog extends Component {
                                 gridItemStyle={StyledItem}
                                 setJsonExtValid={this.setJsonExtValid}
                             />
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -187,7 +187,7 @@ class UpdatePolicyHolderInsureeDialog extends Component {
                                     readOnly={!isReplacing}
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -220,4 +220,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ updatePolicyHolderInsuree, replacePolicyHolderInsuree }, dispatch);
 };
 
+export { StyledItem };
 export default injectIntl(connect(null, mapDispatchToProps)(UpdatePolicyHolderInsureeDialog));

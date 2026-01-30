@@ -90,4 +90,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolder, updatePolicyHolder }, dispatch);
 };
 
+export { StyledPage };
 export default withHistory(withModulesManager(injectIntl(connect(mapStateToProps, mapDispatchToProps)(PolicyHolderPage))));

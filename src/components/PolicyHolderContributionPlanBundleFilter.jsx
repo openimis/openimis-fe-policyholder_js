@@ -45,7 +45,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
         const { intl, onChangeFilters, policyHolder } = this.props;
         return (
             <Grid container component={StyledForm}>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PolicyHolderContributionPlanBundlePicker
                         withNull={true}
                         nullLabel={formatMessage(intl, "policyHolder", "policyHolderContributionPlanBundle.any")}
@@ -58,7 +58,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
                         }])}
                     />
                 </Grid>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -67,7 +67,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -76,7 +76,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid item xs={3} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}
@@ -95,4 +95,5 @@ const mapStateToProps = state => ({
     policyHolder: !!state.policyHolder.policyHolder ? state.policyHolder.policyHolder : null
 });
 
+export { StyledForm };
 export default withModulesManager(injectIntl(connect(mapStateToProps, null)(PolicyHolderContributionPlanBundleFilter)));

@@ -31,4 +31,5 @@ class ConfigBasedPicker extends Component {
     }
 }
 
+export { ConfigBasedPicker };
 export default injectIntl(ConfigBasedPicker);

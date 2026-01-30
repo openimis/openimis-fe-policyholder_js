@@ -185,7 +185,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
     return (
       <Fragment>
         <Grid container component={StyledTableTitle}>
-          <Grid item>
+          <Grid>
             <Grid
               container
               align="center"
@@ -193,7 +193,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               direction="column"
               component={StyledFullHeight}
             >
-              <Grid item>
+              <Grid>
                 <Typography>
                   <FormattedMessage
                     module="policyHolder"
@@ -217,7 +217,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
           </Fragment>
         )}
         <Grid container component={StyledItem}>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <ValidatedTextInput
               itemQueryIdentifier="policyHolderCode"
               codeTakenLabel="policyHolder.codeTaken"
@@ -236,7 +236,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={(!!edited && !!edited.id) || isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="tradeName"
@@ -247,7 +247,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={8}>
+          <Grid size={8}>
             <PublishedComponent
               pubRef="location.DetailedLocation"
               withNull
@@ -258,7 +258,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextAreaInput
               module="policyHolder"
               label="address"
@@ -268,7 +268,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="phone"
@@ -279,7 +279,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="fax"
@@ -290,7 +290,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="email"
@@ -301,7 +301,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="contactName"
@@ -310,7 +310,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <PublishedComponent
               pubRef="policyHolder.LegalFormPicker"
               module="policyHolder"
@@ -321,7 +321,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <PublishedComponent
               pubRef="policyHolder.ActivityCodePicker"
               module="policyHolder"
@@ -332,7 +332,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="accountancyAccount"
@@ -350,7 +350,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="bankAccount"
@@ -359,7 +359,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="paymentReference"
@@ -377,7 +377,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <PublishedComponent
               pubRef="core.DatePicker"
               module="policyHolder"
@@ -391,7 +391,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={(!!edited && !!edited.id) || isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid item xs={2} component={StyledItem}>
+          <Grid size={2} component={StyledItem}>
             <PublishedComponent
               pubRef="core.DatePicker"
               module="policyHolder"
@@ -421,6 +421,8 @@ const mapStateToProps = (store) => ({
   savedPolicyHolderCode: store.policyHolder?.policyHolder?.code,
 });
 
+export { StyledTableTitle };
+export { PolicyHolderGeneralInfoPanel };
 export default withModulesManager(
   injectIntl(
     connect(

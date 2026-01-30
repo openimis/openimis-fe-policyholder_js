@@ -51,4 +51,5 @@ class LegalFormPicker extends Component {
     }
 }
 
+export { LegalFormPicker };
 export default withModulesManager(injectIntl(LegalFormPicker));

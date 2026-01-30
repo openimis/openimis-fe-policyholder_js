@@ -77,4 +77,5 @@ class PolicyHolderTabPanel extends FormPanel {
     }
 }
 
+export { StyledPaper };
 export default withModulesManager(injectIntl(PolicyHolderTabPanel));

@@ -68,12 +68,12 @@ class PolicyHolderContributionPlanBundlesTab extends Component {
                         <Fragment>
                             {rights.includes(RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_CREATE) && (
                                 <Grid container justify="flex-end" alignItems="center" spacing={1}>
-                                    <Grid item>
+                                    <Grid>
                                         <Typography>
                                             <FormattedMessage module="policyHolder" id="policyHolderContributionPlanBundle.createPolicyHolderContributionPlanBundle" />
                                         </Typography>
                                     </Grid>
-                                    <Grid item>
+                                    <Grid>
                                         <CreatePolicyHolderContributionPlanBundleDialog
                                             policyHolder={policyHolder}
                                             onSave={() => {}}

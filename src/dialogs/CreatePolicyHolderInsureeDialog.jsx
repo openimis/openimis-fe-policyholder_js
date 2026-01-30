@@ -106,7 +106,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <Grid container direction="column" component={StyledItem}>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="insuree.InsureeChfIdPicker"
                                     required
@@ -114,7 +114,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
                                     onChange={v => this.updateAttribute('insuree', v)}
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PolicyHolderContributionPlanBundlePicker
                                     withNull={false}
                                     required
@@ -134,7 +134,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
                                 gridItemStyle={StyledItem}
                                 setJsonExtValid={this.setJsonExtValid}
                             />
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -143,7 +143,7 @@ class CreatePolicyHolderInsureeDialog extends Component {
                                     onChange={v => this.updateAttribute('dateValidFrom', v)}
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -171,4 +171,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderInsuree }, dispatch);
 };
 
+export { StyledItem };
 export default injectIntl(connect(null, mapDispatchToProps)(CreatePolicyHolderInsureeDialog));

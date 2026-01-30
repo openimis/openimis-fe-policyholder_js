@@ -89,7 +89,7 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
                     </DialogTitle>
                     <DialogContent>
                         <Grid container direction="column" component={StyledItem}>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="contributionPlan.ContributionPlanBundlePicker"
                                     withNull={false}
@@ -98,7 +98,7 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
                                     onChange={v => this.updateAttribute('contributionPlanBundle', v)}
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -107,7 +107,7 @@ class CreatePolicyHolderContributionPlanBundleDialog extends Component {
                                     onChange={v => this.updateAttribute('dateValidFrom', v)}
                                 />
                             </Grid>
-                            <Grid item component={StyledItem}>
+                            <Grid component={StyledItem}>
                                 <PublishedComponent
                                     pubRef="core.DatePicker"
                                     module="policyHolder"
@@ -135,4 +135,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderContributionPlanBundle }, dispatch);
 };
 
+export { StyledItem };
 export default injectIntl(connect(null, mapDispatchToProps)(CreatePolicyHolderContributionPlanBundleDialog));

@@ -88,6 +88,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators({ clearCurrentPaginationPage }, dispatch);
 
+export { StyledPage };
+export { PolicyHolderUsersPage };
 export default injectIntl(
   connect(mapStateToProps, mapDispatchToProps)(PolicyHolderUsersPage)
 );
