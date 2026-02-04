@@ -22,11 +22,11 @@ import { ECONOMIC_UNIT_STORAGE_KEY, MODULE_NAME, REF_PUBLIC_GDPR_PAGE } from '..
 import EconomicUnitPicker from '../pickers/EconomicUnitPicker';
 
 const StyledPrimaryButton = styled(Button)(({ theme }) => ({
-  ...theme.dialog.primaryButton,
+  ...theme?.dialog?.primaryButton ?? {},
 }));
 
 const StyledSecondaryButton = styled(Button)(({ theme }) => ({
-  ...theme.dialog.secondaryButton,
+  ...theme?.dialog?.secondaryButton ?? {},
 }));
 
 const StyledDialogContent = styled(DialogContent)(({ theme }) => ({

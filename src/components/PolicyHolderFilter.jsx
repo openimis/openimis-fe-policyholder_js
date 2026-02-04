@@ -10,7 +10,7 @@ const StyledForm = styled('div')(({ theme }) => ({
 }));
 
 const StyledItem = styled('div')(({ theme }) => ({
-  padding: theme.spacing(1)
+  padding: theme?.spacing?.(1)
 }));
 
 class PolicyHolderFilter extends Component {

@@ -25,11 +25,11 @@ import {
 } from "../constants";
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme.paper.item
+  ...theme?.paper?.item ?? {}
 }));
 
 const StyledFab = styled('div')(({ theme }) => ({
-  ...theme.fab
+  ...theme?.fab ?? {}
 }));
 
 class UpdatePolicyHolderUserDialog extends Component {

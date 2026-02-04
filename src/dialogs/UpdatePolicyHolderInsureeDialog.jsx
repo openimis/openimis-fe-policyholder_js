@@ -31,7 +31,7 @@ import {
 } from "../constants";
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme.paper.item
+  ...theme?.paper?.item ?? {}
 }));
 
 class UpdatePolicyHolderInsureeDialog extends Component {

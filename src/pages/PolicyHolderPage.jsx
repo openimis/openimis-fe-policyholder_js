@@ -15,7 +15,7 @@ import {
 } from "../constants";
 
 const StyledPage = styled('div')(({ theme }) => ({
-  ...theme.page,
+  ...theme?.page ?? {},
 }));
 
 class PolicyHolderPage extends Component {

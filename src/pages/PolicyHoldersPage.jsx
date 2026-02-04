@@ -23,11 +23,11 @@ import AddIcon from "@mui/icons-material/Add";
 import { decodeId } from "@openimis/fe-core";
 
 const StyledPage = styled('div')(({ theme }) => ({
-  ...theme.page,
+  ...theme?.page ?? {},
 }));
 
 const StyledFab = styled('div')(({ theme }) => ({
-  ...theme.fab,
+  ...theme?.fab ?? {},
 }));
 
 class PolicyHoldersPage extends Component {

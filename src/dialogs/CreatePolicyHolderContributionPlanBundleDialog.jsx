@@ -15,7 +15,7 @@ import { bindActionCreators } from "redux";
 import { ZERO, MAX_CLIENTMUTATIONLABEL_LENGTH } from "../constants"
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme.paper.item
+  ...theme?.paper?.item ?? {}
 }));
 
 class CreatePolicyHolderContributionPlanBundleDialog extends Component {
