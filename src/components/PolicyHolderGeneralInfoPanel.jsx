@@ -14,6 +14,8 @@ import {
   TextAreaInput,
   FormattedMessage,
   PublishedComponent,
+  GRID_RESPONSIVE_STANDARD,
+  GRID_RESPONSIVE_FULL,
 } from "@openimis/fe-core";
 import {
   policyHolderCodeClear,
@@ -30,6 +32,13 @@ import {
   MAX_PHONE_LENGTH,
   MAX_TRADENAME_LENGTH,
 } from "../constants";
+
+const StyledFormWrapper = styled('div')(({ theme }) => ({
+  '& .locationWrapper': {
+    paddingLeft: theme?.spacing ? theme.spacing(1) : 8,
+    paddingRight: theme?.spacing ? theme.spacing(1) : 8,
+  },
+}));
 
 const StyledTableTitle = styled('div')(({ theme }) => ({
   ...theme?.table?.title ?? {},
@@ -216,8 +225,8 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
             <Divider />
           </Fragment>
         )}
-        <Grid container component={StyledItem}>
-          <Grid size={2} component={StyledItem}>
+          <Grid container component={StyledFormWrapper} spacing={2}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <ValidatedTextInput
               itemQueryIdentifier="policyHolderCode"
               codeTakenLabel="policyHolder.codeTaken"
@@ -236,7 +245,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={(!!edited && !!edited.id) || isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="tradeName"
@@ -247,18 +256,21 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={8}>
-            <PublishedComponent
-              pubRef="location.DetailedLocation"
-              withNull
-              required
-              filterLabels={false}
-              value={!!edited ? edited.locations : null}
-              onChange={(v) => this.updateAttribute("locations", v)}
-              readOnly={isPolicyHolderPortalUser}
-            />
+          <Grid size={GRID_RESPONSIVE_FULL}>
+            <div className="locationWrapper">
+              <PublishedComponent
+                pubRef="location.DetailedLocation"
+                withNull
+                required
+                filterLabels={false}
+                value={!!edited ? edited.locations : null}
+                onChange={(v) => this.updateAttribute("locations", v)}
+                readOnly={isPolicyHolderPortalUser}
+                split
+              />
+            </div>
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid item size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextAreaInput
               module="policyHolder"
               label="address"
@@ -268,7 +280,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="phone"
@@ -279,7 +291,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="fax"
@@ -290,7 +302,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="email"
@@ -301,7 +313,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="contactName"
@@ -310,7 +322,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <PublishedComponent
               pubRef="policyHolder.LegalFormPicker"
               module="policyHolder"
@@ -321,7 +333,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <PublishedComponent
               pubRef="policyHolder.ActivityCodePicker"
               module="policyHolder"
@@ -332,7 +344,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="accountancyAccount"
@@ -350,7 +362,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="bankAccount"
@@ -359,7 +371,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <TextInput
               module="policyHolder"
               label="paymentReference"
@@ -377,7 +389,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <PublishedComponent
               pubRef="core.DatePicker"
               module="policyHolder"
@@ -391,7 +403,7 @@ class PolicyHolderGeneralInfoPanel extends FormPanel {
               readOnly={(!!edited && !!edited.id) || isPolicyHolderPortalUser}
             />
           </Grid>
-          <Grid size={2} component={StyledItem}>
+          <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
             <PublishedComponent
               pubRef="core.DatePicker"
               module="policyHolder"
