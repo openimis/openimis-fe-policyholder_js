@@ -1,23 +1,12 @@
 import React, { Component } from "react"
 import { injectIntl } from 'react-intl';
 import { styled } from "@mui/material/styles";
-import {
-  withModulesManager,
-  formatMessage,
-  TextInput,
-  PublishedComponent,
-  GRID_RESPONSIVE_STANDARD,
-  GRID_RESPONSIVE_FULL,
-} from "@openimis/fe-core";
+import { withModulesManager, formatMessage, TextInput, PublishedComponent } from "@openimis/fe-core";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, DATE_TO_DATETIME_SUFFIX, CONTAINS_LOOKUP } from "../constants"
 
 const StyledForm = styled('div')(({ theme }) => ({
-  padding: 0,
-  '& .locationWrapper': {
-    paddingLeft: theme?.spacing ? theme.spacing(1) : 8,
-    paddingRight: theme?.spacing ? theme.spacing(1) : 8,
-  },
+  padding: 0
 }));
 
 const StyledItem = styled('div')(({ theme }) => ({
@@ -68,8 +57,8 @@ class PolicyHolderFilter extends Component {
     render() {
         const { intl, filters, onChangeFilters } = this.props;
         return (
-            <Grid container component={StyledForm} spacing={2}>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+            <Grid container component={StyledForm}>
+                <Grid size={2} component={StyledItem}>
                     <TextInput
                         module="policyHolder"
                         label="code"
@@ -77,7 +66,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeStringFilter('code', v, CONTAINS_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <TextInput
                         module="policyHolder"
                         label="tradeName"
@@ -85,19 +74,16 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeStringFilter('tradeName', v, CONTAINS_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_FULL}>
-                    <div className="locationWrapper">
-                        <PublishedComponent
-                            pubRef="location.DetailedLocationFilter"
-                            withNull={true}
-                            filters={filters}
-                            onChangeFilters={onChangeFilters}
-                            anchor="parentLocation"
-                            split
-                        />
-                    </div>
+                <Grid size={8}>
+                    <PublishedComponent
+                        pubRef="location.DetailedLocationFilter"
+                        withNull={true}
+                        filters={filters}
+                        onChangeFilters={onChangeFilters}
+                        anchor="parentLocation"
+                    />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="policyHolder.LegalFormPicker"
                         module="policyHolder"
@@ -108,7 +94,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeFilter('legalForm', v)}
                     />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+                <Grid size={3} component={StyledItem}>
                     <PublishedComponent
                         pubRef="policyHolder.ActivityCodePicker"
                         module="policyHolder"
@@ -119,7 +105,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeFilter('activityCode', v)}
                     />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -128,7 +114,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -137,7 +123,7 @@ class PolicyHolderFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
+                <Grid size={2} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}

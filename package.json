@@ -22,7 +22,11 @@
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-intl": "^7.1.11"
+    "react-intl": "^7.1.11",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^7.2.0",
+    "@mui/icons-material": "^7.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -34,11 +38,7 @@
     "@babel/runtime": "^7.9.6",
     "@vitejs/plugin-react": "^5.0.0",
     "vite": "^7.1.2",
-    "vite-plugin-svgr": "^4.3.0",
-    "@mui/material": "^7.2.0",
-    "@mui/icons-material": "^7.2.0",
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0"
+    "vite-plugin-svgr": "^4.3.0"
   },
   "files": [
     "dist"
