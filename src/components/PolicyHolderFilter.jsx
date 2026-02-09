@@ -17,11 +17,6 @@ import {
 
 const StyledForm = styled('div')(({ theme }) => ({
   padding: 0,
-  '& .locationWrapper': {
-    paddingTop: theme?.spacing ? theme.spacing(1) : 8,
-    paddingLeft: theme?.spacing ? theme.spacing(1) : 8,
-    paddingRight: theme?.spacing ? theme.spacing(1) : 8,
-  },
 }));
 
 const StyledItem = styled('div')(({ theme }) => ({
@@ -73,7 +68,7 @@ class PolicyHolderFilter extends Component {
     const { intl, filters, onChangeFilters } = this.props;
     return (
       <Grid container component={StyledForm}>
-        <Grid size={12} className='locationWrapper'>
+        <Grid size={12}>
           <PublishedComponent
             pubRef='location.DetailedLocationFilter'
             withNull={true}
