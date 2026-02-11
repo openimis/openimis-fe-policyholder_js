@@ -6,6 +6,8 @@ import {
   formatMessage,
   TextInput,
   PublishedComponent,
+  GRID_RESPONSIVE_STANDARD,
+  GRID_RESPONSIVE_SMALL,
 } from '@openimis/fe-core';
 import { Grid, FormControlLabel, Checkbox } from '@mui/material';
 import {
@@ -78,7 +80,7 @@ class PolicyHolderFilter extends Component {
             split
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
           <TextInput
             module='policyHolder'
             label='code'
@@ -88,7 +90,7 @@ class PolicyHolderFilter extends Component {
             }
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
           <TextInput
             module='policyHolder'
             label='tradeName'
@@ -98,7 +100,7 @@ class PolicyHolderFilter extends Component {
             }
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
           <PublishedComponent
             pubRef='policyHolder.LegalFormPicker'
             module='policyHolder'
@@ -109,7 +111,7 @@ class PolicyHolderFilter extends Component {
             onChange={(v) => this._onChangeFilter('legalForm', v)}
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
           <PublishedComponent
             pubRef='policyHolder.ActivityCodePicker'
             module='policyHolder'
@@ -120,7 +122,7 @@ class PolicyHolderFilter extends Component {
             onChange={(v) => this._onChangeFilter('activityCode', v)}
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
           <PublishedComponent
             pubRef='core.DatePicker'
             module='policyHolder'
@@ -135,7 +137,7 @@ class PolicyHolderFilter extends Component {
             }
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
           <PublishedComponent
             pubRef='core.DatePicker'
             module='policyHolder'
@@ -146,7 +148,7 @@ class PolicyHolderFilter extends Component {
             }
           />
         </Grid>
-        <Grid size={3} component={StyledItem}>
+        <Grid size={GRID_RESPONSIVE_SMALL} component={StyledItem}>
           <FormControlLabel
             control={
               <Checkbox

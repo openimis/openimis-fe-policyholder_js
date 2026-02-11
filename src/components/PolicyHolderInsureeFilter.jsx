@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { styled } from "@mui/material/styles";
-import { withModulesManager, formatMessage, TextInput, PublishedComponent, decodeId } from "@openimis/fe-core";
+import { withModulesManager, formatMessage, TextInput, PublishedComponent, decodeId, GRID_RESPONSIVE_STANDARD, GRID_RESPONSIVE_SMALL } from "@openimis/fe-core";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, STARTS_WITH_LOOKUP, DATE_TO_DATETIME_SUFFIX } from "../constants"
 import PolicyHolderContributionPlanBundlePicker from "../pickers/PolicyHolderContributionPlanBundlePicker";
@@ -60,7 +60,7 @@ class PolicyHolderInsureeFilter extends Component {
         const { intl, onChangeFilters, policyHolder } = this.props;
         return (
             <Grid container component={StyledForm}>
-                <Grid size={3} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <TextInput
                         module="policyHolder" 
                         label="insureeCHFID"
@@ -68,7 +68,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeStringFilter('insuree_ChfId', v, STARTS_WITH_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={3} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <PolicyHolderContributionPlanBundlePicker
                         withNull
                         nullLabel={formatMessage(intl, "policyHolder", "policyHolderContributionPlanBundle.any")}
@@ -81,7 +81,7 @@ class PolicyHolderInsureeFilter extends Component {
                         }])}
                     />
                 </Grid>
-                <Grid size={2} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -90,7 +90,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={2} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -99,7 +99,7 @@ class PolicyHolderInsureeFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={2} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_SMALL} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}

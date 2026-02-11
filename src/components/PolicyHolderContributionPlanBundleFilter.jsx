@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
-import { withModulesManager, formatMessage, PublishedComponent, decodeId } from "@openimis/fe-core";
+import { withModulesManager, formatMessage, PublishedComponent, decodeId, GRID_RESPONSIVE_STANDARD, GRID_RESPONSIVE_SMALL } from "@openimis/fe-core";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, DATE_TO_DATETIME_SUFFIX } from "../constants"
@@ -45,7 +45,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
         const { intl, onChangeFilters, policyHolder } = this.props;
         return (
             <Grid container component={StyledForm}>
-                <Grid size={3} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <PolicyHolderContributionPlanBundlePicker
                         withNull={true}
                         nullLabel={formatMessage(intl, "policyHolder", "policyHolderContributionPlanBundle.any")}
@@ -58,7 +58,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
                         }])}
                     />
                 </Grid>
-                <Grid size={3} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -67,7 +67,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidFrom', v, GREATER_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={3} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_STANDARD} component={StyledItem}>
                     <PublishedComponent
                         pubRef="core.DatePicker"
                         module="policyHolder"
@@ -76,7 +76,7 @@ class PolicyHolderContributionPlanBundleFilter extends Component {
                         onChange={v => this._onChangeDateFilter('dateValidTo', v, LESS_OR_EQUAL_LOOKUP)}
                     />
                 </Grid>
-                <Grid size={3} component={StyledItem}>
+                <Grid size={GRID_RESPONSIVE_SMALL} component={StyledItem}>
                     <FormControlLabel
                         control={<Checkbox 
                             checked={!!this._filterValue('isDeleted')}
