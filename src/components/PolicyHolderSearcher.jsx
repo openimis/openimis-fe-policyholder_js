@@ -40,6 +40,12 @@ class PolicyHolderSearcher extends Component {
       "policyHolderFilter.defaultPageSize",
       DEFAULT_PAGE_SIZE
     );
+    this.legalFormOptions = props.modulesManager.getConf("fe-policyHolder", 
+      "policyHolderFilter.legalFormOptions"
+    );
+    this.activityCodeOptions = props.modulesManager.getConf("fe-policyHolder", 
+      "policyHolderFilter.activityCodeOptions"
+    );
     this.state = {
       toDelete: null,
       deleted: [],
@@ -98,7 +104,7 @@ class PolicyHolderSearcher extends Component {
           ? `${policyHolder.code} ${policyHolder.tradeName}`
           : "",
       (policyHolder) =>
-        !!policyHolder.locations
+        policyHolder.locations
           ? `
           ${policyHolder.locations.parent.parent.parent.code} 
           ${policyHolder.locations.parent.parent.parent.name}
@@ -109,32 +115,10 @@ class PolicyHolderSearcher extends Component {
           ${policyHolder.locations.code}
           ${policyHolder.locations.name}`
           : "",
-      (policyHolder) =>
-        !!policyHolder.legalForm ? (
-          <PublishedComponent
-            pubRef='policyHolder.LegalFormPicker'
-            module='policyHolder'
-            label='legalForm'
-            value={policyHolder.legalForm}
-            withLabel={false}
-            readOnly
-          />
-        ) : (
-          ""
-        ),
-      (policyHolder) =>
-        !!policyHolder.activityCode ? (
-          <PublishedComponent
-            pubRef='policyHolder.ActivityCodePicker'
-            module='policyHolder'
-            label='activityCode'
-            value={policyHolder.activityCode}
-            withLabel={false}
-            readOnly
-          />
-        ) : (
-          ""
-        ),
+      (policyHolder) => this.legalFormOptions ? this.legalFormOptions.find(option => option.value === policyHolder.legalForm)?.label 
+        : formatMessage(intl, "policyHolder", `legalForm.${policyHolder.legalForm}`),
+      (policyHolder) => this.activityCodeOptions ? this.activityCodeOptions.find(option => option.value === policyHolder.activityCode)?.label 
+        : formatMessage(intl, "policyHolder", `activityCode.${policyHolder.activityCode}`),
       (policyHolder) =>
         !!policyHolder.dateValidFrom
           ? formatDateFromISO(modulesManager, intl, policyHolder.dateValidFrom)
