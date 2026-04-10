@@ -4,8 +4,11 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import EditIcon from "@mui/icons-material/Edit";
-import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import { GetIconComponent } from "@openimis/fe-core";
+
+const EditIcon = GetIconComponent("Edit")
+
+const NoteAddIcon = GetIconComponent("NoteAdd")
 import { FormattedMessage, formatMessageWithValues, PublishedComponent, formatMessage } from "@openimis/fe-core";
 import { Grid, Tooltip, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";

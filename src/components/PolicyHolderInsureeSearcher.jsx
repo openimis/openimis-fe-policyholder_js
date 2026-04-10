@@ -9,7 +9,8 @@ import {
     withTooltip,
     coreConfirm,
     decodeId,
-    Contributions
+    Contributions,
+    GetIconComponent,
 } from "@openimis/fe-core";
 import PolicyHolderInsureeFilter from "./PolicyHolderInsureeFilter";
 import { fetchPolicyHolderInsurees, deletePolicyHolderInsuree } from "../actions";
@@ -17,7 +18,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import UpdatePolicyHolderInsureeDialog from "../dialogs/UpdatePolicyHolderInsureeDialog";
 import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+const DeleteIcon = GetIconComponent("Delete")
 import {
     ZERO,
     MAX_CLIENTMUTATIONLABEL_LENGTH,

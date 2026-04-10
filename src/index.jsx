@@ -1,7 +1,6 @@
 import React from "react";
-import BusinessIcon from "@mui/icons-material/Business";
-import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { FormattedMessage } from "@openimis/fe-core";
+
+import { GetIconComponent, FormattedMessage } from "@openimis/fe-core";
 import messages_en from "./translations/en.json";
 import PolicyHoldersPage from "./pages/PolicyHoldersPage";
 import PolicyHolderPage from "./pages/PolicyHolderPage";
@@ -36,7 +35,8 @@ import { PolicyHolderUsersTabLabel, PolicyHolderUsersTabPanel } from "./componen
 import { POLICYHOLDER_PICKER_PROJECTION } from "./actions";
 import EconomicUnitDialog from "./dialogs/EconomicUnitDialog";
 import EconomicUnitChangeButton from "./components/EconomicUnitChangeButton";
-
+const BusinessIcon = GetIconComponent("Business")
+const SupervisorAccountIcon = GetIconComponent("SupervisorAccount")
 const ROUTE_POLICY_HOLDERS = "policyHolders";
 const ROUTE_POLICY_HOLDER = "policyHolders/policyHolder";
 const ROUTE_POLICY_HOLDER_USERS = "policyHolderUsers";

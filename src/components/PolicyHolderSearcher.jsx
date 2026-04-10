@@ -9,14 +9,15 @@ import {
   journalize,
   Searcher,
   PublishedComponent,
+  GetIconComponent,
 } from "@openimis/fe-core";
 import PolicyHolderFilter from "./PolicyHolderFilter";
 import { fetchPolicyHolders, deletePolicyHolder } from "../actions";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { IconButton, Tooltip } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+const EditIcon = GetIconComponent("Edit")
+const DeleteIcon = GetIconComponent("Delete")
 import {
   ZERO,
   MAX_CLIENTMUTATIONLABEL_LENGTH,

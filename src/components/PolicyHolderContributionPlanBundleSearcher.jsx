@@ -8,7 +8,8 @@ import {
     decodeId,
     withTooltip,
     formatMessage,
-    coreConfirm
+    coreConfirm,
+    GetIconComponent,
 } from "@openimis/fe-core";
 import PolicyHolderContributionPlanBundleFilter from "./PolicyHolderContributionPlanBundleFilter";
 import PolicyHolderContributionPlanBundlePicker from "../pickers/PolicyHolderContributionPlanBundlePicker";
@@ -20,7 +21,7 @@ import {
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+const DeleteIcon = GetIconComponent("Delete")
 import {
     ZERO,
     MAX_CLIENTMUTATIONLABEL_LENGTH,

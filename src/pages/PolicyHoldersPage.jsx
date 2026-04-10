@@ -19,7 +19,10 @@ import {
   RIGHT_PORTALPOLICYHOLDER_SEARCH,
 } from "../constants";
 import { Fab } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { GetIconComponent } from "@openimis/fe-core";
+
+const AddIcon = GetIconComponent("Add")
+
 import { decodeId } from "@openimis/fe-core";
 
 const StyledPage = styled('div')(({ theme }) => ({

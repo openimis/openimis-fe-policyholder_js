@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 
 import { styled } from '@mui/material/styles';
 import { Button } from '@mui/material';
-import { PinDrop } from '@mui/icons-material';
+import { GetIconComponent } from "@openimis/fe-core";
+const PinDrop = GetIconComponent("PinDrop")
 
 import { useTranslations, useModulesManager } from '@openimis/fe-core';
 import { MODULE_NAME, RIGHT_VIEW_EU_MODAL } from '../constants';

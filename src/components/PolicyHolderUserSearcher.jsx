@@ -13,7 +13,10 @@ import {
   decodeId,
 } from "@openimis/fe-core";
 import { IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { GetIconComponent } from "@openimis/fe-core";
+
+const DeleteIcon = GetIconComponent("Delete")
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { fetchPolicyHolderUsers, deletePolicyHolderUser } from "../actions";
