@@ -70,43 +70,38 @@ const DEFAULT_CONFIG = {
         { key: "policyHolder.route.policyHolder", ref: ROUTE_POLICY_HOLDER }
     ],
     "core.Router": [
-        { path: ROUTE_POLICY_HOLDERS, component: PolicyHoldersPage },
+        { 
+            path: ROUTE_POLICY_HOLDERS,
+            text: "policyHolder.menu.policyHolders",
+            icon: "BusinessIcon",
+            rights:[
+                    RIGHT_POLICYHOLDER_SEARCH,
+                    RIGHT_PORTALPOLICYHOLDER_SEARCH,
+                ],
+            id: 'insuree.policyholders',
+            component: PolicyHoldersPage 
+        },
         { path: ROUTE_POLICY_HOLDER + "/:policyholder_id?", component: PolicyHolderPage },
-        { path: ROUTE_POLICY_HOLDER_USERS, component: PolicyHolderUsersPage }
+        { 
+            path: ROUTE_POLICY_HOLDER_USERS,
+            component: PolicyHolderUsersPage,
+            text: "policyHolder.menu.policyHolderUsers",
+            icon: "SupervisorAccountIcon",
+            rights:
+                [
+                    RIGHT_POLICYHOLDERUSER_SEARCH,
+                    RIGHT_PORTALPOLICYHOLDERUSER_SEARCH
+                ]
+            }
     ],
     "insuree.MainMenu": [
         {
-            text: (
-                <FormattedMessage
-                    module="policyHolder"
-                    id="menu.policyHolders"
-                />
-            ),
-            icon: <BusinessIcon />,
-            route: "/" + ROUTE_POLICY_HOLDERS,
-            filter: rights =>
-                [
-                    RIGHT_POLICYHOLDER_SEARCH,
-                    RIGHT_PORTALPOLICYHOLDER_SEARCH,
-                ].some(right => rights.includes(right)),
-            id: 'insuree.policyholders',
+            route:  ROUTE_POLICY_HOLDERS,
         }
     ],
     "admin.MainMenu": [
         {
-            text: (
-                <FormattedMessage
-                    module="policyHolder"
-                    id="menu.policyHolderUsers"
-                />
-            ),
-            icon: <SupervisorAccountIcon />,
-            route: "/" + ROUTE_POLICY_HOLDER_USERS,
-            filter: rights =>
-                [
-                    RIGHT_POLICYHOLDERUSER_SEARCH,
-                    RIGHT_PORTALPOLICYHOLDERUSER_SEARCH
-                ].some(right => rights.includes(right))
+            route:  ROUTE_POLICY_HOLDER_USERS,
         }
     ],
     "policyHolder.TabPanel.label": [
