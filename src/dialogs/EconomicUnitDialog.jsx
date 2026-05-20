@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -15,6 +15,7 @@ import { styled } from '@mui/material/styles';
 import {
   useTranslations,
   useModulesManager,
+  useLocalStorage,
   redirectToSamlLogout,
 } from '@openimis/fe-core';
 import { saveEconomicUnit } from '../actions';
@@ -51,7 +52,10 @@ const EconomicUnitDialog = ({ open, setEconomicUnitDialogOpen, history }) => {
   } = useSelector((store) => store.policyHolder);
 
   const [value, setValue] = useState(null);
-  const storageEconomicUnit = localStorage.getItem(ECONOMIC_UNIT_STORAGE_KEY);
+  const [storageEconomicUnit, setStorageEconomicUnit] = useLocalStorage(
+    ECONOMIC_UNIT_STORAGE_KEY,
+    null
+  );
 
   const onChange = (option) => {
     setValue(option);
@@ -59,7 +63,7 @@ const EconomicUnitDialog = ({ open, setEconomicUnitDialogOpen, history }) => {
 
   const onConfirm = () => {
     if (value) {
-      localStorage.setItem(ECONOMIC_UNIT_STORAGE_KEY, JSON.stringify(value));
+      setStorageEconomicUnit(value);
       dispatch(saveEconomicUnit(value));
       setEconomicUnitDialogOpen(false);
     }
@@ -75,20 +79,6 @@ const EconomicUnitDialog = ({ open, setEconomicUnitDialogOpen, history }) => {
 
     window.open(url, '_blank');
   };
-
-  useEffect(() => {
-    const handleLocalStorageChange = () => {
-      if (!storageEconomicUnit) {
-        setEconomicUnitDialogOpen(true);
-      }
-    };
-
-    window.addEventListener('storage', handleLocalStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleLocalStorageChange);
-    };
-  }, []);
 
   return (
     <Dialog open={open} maxWidth='xs'>

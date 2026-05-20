@@ -6,6 +6,7 @@ import {
   dispatchMutationReq,
   dispatchMutationResp,
   dispatchMutationErr,
+  getLocalStorage,
 } from "@openimis/fe-core";
 import { ECONOMIC_UNIT_STORAGE_KEY } from "./constants";
 
@@ -53,7 +54,7 @@ function reducer(
     policyHolderUsers: [],
     policyHolderUsersPageInfo: {},
     policyHolderUsersTotalCount: 0,
-    economicUnit: JSON.parse(localStorage.getItem(ECONOMIC_UNIT_STORAGE_KEY) ?? '{}'),
+    economicUnit: getLocalStorage(ECONOMIC_UNIT_STORAGE_KEY, {}),
     policyholderMutationReq: false,
     policyholderMutationErr: false,
     policyholderMutationResp: false,
