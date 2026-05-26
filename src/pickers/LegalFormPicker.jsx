@@ -1,53 +1,32 @@
 import React, { Component } from "react";
-import { withModulesManager } from "@openimis/fe-core";
+import { withModulesManager, ConstantBasedPicker } from "@openimis/fe-core";
 import { injectIntl } from "react-intl";
 import ConfigBasedPicker from "./ConfigBasedPicker";
 
 class LegalFormPicker extends Component {
     constructor(props) {
-        super(props);
-        this.activityCodeOptions = props.modulesManager.getConf("fe-policyHolder", "policyHolderFilter.legalFormOptions",
-            [{
-                "value": "1", 
-                "label": {
-                    "en": "Personal Company",
-                    "fr": "Persone physique"
-                }
-            }, {
-                "value": "2",
-                "label": {
-                    "en": "Limited Risk Company",
-                    "fr": "Société à risque limité"
-                }
-            }, {
-                "value": "3",
-                "label": {
-                    "en": "Association",
-                    "fr": "Association"
-                }
-            }, {
-                "value": "4",
-                "label": {
-                    "en": "Government",
-                    "fr": "Gouvernement"
-                }
-            }, {
-                "value": "5",
-                "label": {
-                    "en": "Union",
-                    "fr":"Syndicat"
-                }
-            }]
-        );
+      super(props);
+      this.legalFormOptions = props.modulesManager.getConf("fe-policyHolder", 
+        "policyHolderFilter.legalFormOptions"
+      );
     }
-
+    
     render() {
         return (
-            <ConfigBasedPicker
-                configOptions={this.activityCodeOptions}
-                {...this.props}
-            />
-        )
+            this.legalFormOptions ? (
+                <ConfigBasedPicker
+                    configOptions={this.legalFormOptions}
+                    {...this.props}
+                />
+            ) : (
+                <ConstantBasedPicker
+                    constants={[1, 2, 3, 4, 5]}
+                    label="legalForm"
+                    module="policyHolder"
+                    {...this.props}
+                />
+            )
+        );
     }
 }
 
