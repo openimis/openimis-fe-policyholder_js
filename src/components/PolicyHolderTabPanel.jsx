@@ -11,19 +11,16 @@ import {
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
   ...theme?.paper?.paper ?? {},
-}));
-
-const StyledTableTitle = styled('div')(({ theme }) => ({
-  ...theme?.table?.title ?? {},
-  padding: 0
-}));
-
-const StyledSelectedTab = styled('div')(({ theme }) => ({
-  borderBottom: "4px solid white"
-}));
-
-const StyledUnselectedTab = styled('div')(({ theme }) => ({
-  borderBottom: "4px solid transparent"
+  '& .tableTitle': {
+    ...theme?.table?.title ?? {},
+    padding: 0
+  },
+  '& .selectedTab': {
+    borderBottom: "4px solid white"
+  },
+  '& .unselectedTab': {
+    borderBottom: "4px solid transparent"
+  }
 }));
 
 const POLICYHOLDER_TABS_PANEL_CONTRIBUTION_KEY = "policyHolder.TabPanel.panel";
@@ -43,7 +40,7 @@ class PolicyHolderTabPanel extends FormPanel {
 
     isSelected = value => value === this.state.value;
 
-    tabStyle = value => this.isSelected(value) ? StyledSelectedTab : StyledUnselectedTab;
+    tabStyle = value => this.isSelected(value) ? "selectedTab" : "unselectedTab";
 
     handleChange = (_, value) => this.setState({ value });
 
@@ -53,7 +50,7 @@ class PolicyHolderTabPanel extends FormPanel {
         const isTabsEnabled = !!edited && !!edited.id && !mandatoryFieldsEmpty;
         return (
             <StyledPaper>
-                <Grid container component={StyledTableTitle}>
+                <Grid container className="tableTitle">
                     <Contributions
                         contributionKey={POLICYHOLDER_TABS_LABEL_CONTRIBUTION_KEY}
                         intl={intl}
