@@ -49,12 +49,6 @@ class PolicyHolderUserSearcher extends Component {
     if (prevProps.submittingMutation && !this.props.submittingMutation) {
       this.props.journalize(this.props.mutation);
     } else if (
-      prevProps.confirmed !== this.props.confirmed &&
-      !!this.props.confirmed &&
-      !!this.state.confirmedAction
-    ) {
-      this.state.confirmedAction();
-    } else if (
       prevState.toDelete !== this.state.toDelete &&
       !!this.state.toDelete
     ) {
@@ -243,7 +237,8 @@ class PolicyHolderUserSearcher extends Component {
             user: policyHolderUser.user.username,
           }
         ),
-        formatMessage(intl, "policyHolder", "dialog.delete.message")
+        formatMessage(intl, "policyHolder", "dialog.delete.message"),
+        { onConfirm: confirmedAction },
       );
     let confirmedAction = () => {
       deletePolicyHolderUser(
@@ -260,7 +255,7 @@ class PolicyHolderUserSearcher extends Component {
       );
       this.setState({ toDelete: policyHolderUser.id });
     };
-    this.setState({ confirmedAction }, confirm);
+    confirm();
   };
 
   sorts = () => {

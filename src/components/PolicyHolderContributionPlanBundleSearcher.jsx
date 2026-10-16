@@ -46,9 +46,7 @@ class PolicyHolderContributionPlanBundleSearcher extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.confirmed !== this.props.confirmed && !!this.props.confirmed && !!this.state.confirmedAction) {
-            this.state.confirmedAction();
-        } else if (prevState.toDelete !== this.state.toDelete) {
+        if (prevState.toDelete !== this.state.toDelete) {
             this.setState(state => ({ deleted: state.deleted.concat(state.toDelete) }));
         } else if (prevState.deleted !== this.state.deleted || prevProps.reset !== this.props.reset) {
             this.refetch();
@@ -179,7 +177,8 @@ class PolicyHolderContributionPlanBundleSearcher extends Component {
                         name: policyHolderContributionPlanBundle.contributionPlanBundle.name
                     }
                 ),
-                formatMessage(intl, "policyHolder", "dialog.delete.message")
+                formatMessage(intl, "policyHolder", "dialog.delete.message"),
+              { onConfirm: confirmedAction },
             );
         let confirmedAction = () => {
             deletePolicyHolderContributionPlanBundle(
@@ -196,10 +195,7 @@ class PolicyHolderContributionPlanBundleSearcher extends Component {
             );
             this.setState({ toDelete: policyHolderContributionPlanBundle.id });
         }
-        this.setState(
-            { confirmedAction },
-            confirm
-        )
+        confirm();
     }
 
     isReplaced = policyHolderContributionPlanBundle => !!policyHolderContributionPlanBundle.replacementUuid;

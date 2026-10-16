@@ -59,12 +59,6 @@ class PolicyHolderSearcher extends Component {
       this.setState((state) => ({
         deleted: state.deleted.concat(state.toDelete),
       }));
-    } else if (
-      prevProps.confirmed !== this.props.confirmed &&
-      !!this.props.confirmed &&
-      !!this.state.confirmedAction
-    ) {
-      this.state.confirmedAction();
     }
   }
 
@@ -191,7 +185,8 @@ class PolicyHolderSearcher extends Component {
             tradeName: policyHolder.tradeName,
           }
         ),
-        formatMessage(intl, "policyHolder", "dialog.delete.message")
+        formatMessage(intl, "policyHolder", "dialog.delete.message"),
+        { onConfirm: confirmedAction },
       );
     let confirmedAction = () => {
       deletePolicyHolder(
@@ -208,7 +203,7 @@ class PolicyHolderSearcher extends Component {
       );
       this.setState({ toDelete: policyHolder.id });
     };
-    this.setState({ confirmedAction }, confirm);
+    confirm();
   };
 
   isDeletedFilterEnabled = (policyHolder) => policyHolder.isDeleted;
