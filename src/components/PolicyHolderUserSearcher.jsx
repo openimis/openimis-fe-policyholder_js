@@ -355,7 +355,6 @@ const mapStateToProps = (state) => ({
   policyHolderUsersTotalCount: state.policyHolder.policyHolderUsersTotalCount,
   submittingMutation: state.policyHolder.submittingMutation,
   mutation: state.policyHolder.mutation,
-  confirmed: state.core.confirmed,
 });
 
 const mapDispatchToProps = (dispatch) => {
