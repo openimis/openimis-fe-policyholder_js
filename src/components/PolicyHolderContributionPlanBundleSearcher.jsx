@@ -251,7 +251,6 @@ const mapStateToProps = state => ({
     policyHolderContributionPlanBundles: state.policyHolder.policyHolderContributionPlanBundles,
     policyHolderContributionPlanBundlesPageInfo: state.policyHolder.policyHolderContributionPlanBundlesPageInfo,
     policyHolderContributionPlanBundlesTotalCount: state.policyHolder.policyHolderContributionPlanBundlesTotalCount,
-    confirmed: state.core.confirmed
 });
 
 const mapDispatchToProps = dispatch => {

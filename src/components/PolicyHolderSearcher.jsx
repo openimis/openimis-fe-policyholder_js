@@ -294,7 +294,6 @@ const mapStateToProps = (state) => ({
   policyHolders: state.policyHolder.policyHolders,
   policyHoldersPageInfo: state.policyHolder.policyHoldersPageInfo,
   policyHoldersTotalCount: state.policyHolder.policyHoldersTotalCount,
-  confirmed: state.core.confirmed,
   submittingMutation: state.policyHolder.submittingMutation,
   mutation: state.policyHolder.mutation,
 });

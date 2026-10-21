@@ -301,7 +301,6 @@ const mapStateToProps = state => ({
     policyHolderInsurees: state.policyHolder.policyHolderInsurees,
     policyHolderInsureesPageInfo: state.policyHolder.policyHolderInsureesPageInfo,
     policyHolderInsureesTotalCount: state.policyHolder.policyHolderInsureesTotalCount,
-    confirmed: state.core.confirmed
 });
 
 const mapDispatchToProps = dispatch => {
