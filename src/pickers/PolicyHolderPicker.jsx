@@ -4,11 +4,28 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchPickerPolicyHolders } from "../actions";
 
+// Listed ids are decoded; a saved policy holder may still carry its relay id.
+// decodeId cannot read an id that is already decoded (a UUID is not base64).
+const plainId = (id) => {
+    try {
+        return decodeId(id);
+    } catch (e) {
+        return id;
+    }
+};
+
 class PolicyHolderPicker extends Component {
     componentDidMount() {
         const { withDeleted = false } = this.props;
         this.props.fetchPickerPolicyHolders(withDeleted ? [] : ["isDeleted: false"]);
     }
+
+    // SelectInput matches by exact JSON: hand it the listed policy holder with the
+    // same id, not the caller's object (another projection, a relay id).
+    selectedOption = (value, policyHolders) => {
+        if (!value) return null;
+        return policyHolders.find((p) => p.id === value.id || p.id === plainId(value.id)) ?? value;
+    };
 
     render() {
         const { value, onChange, required = false, withNull = false, nullLabel = null,
@@ -31,7 +48,7 @@ class PolicyHolderPicker extends Component {
                 label={withLabel ? "policyHolder" : null}
                 required={required}
                 options={options}
-                value={!!value ? value : null}
+                value={this.selectedOption(value, policyHolders)}
                 onChange={onChange}
                 readOnly={readOnly}
             />
