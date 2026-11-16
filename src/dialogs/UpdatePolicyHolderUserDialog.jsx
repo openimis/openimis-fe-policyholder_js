@@ -49,7 +49,6 @@ class UpdatePolicyHolderUserDialog extends Component {
     handleSave = () => {
         const {
             intl,
-            onSave,
             policyHolderUser,
             updatePolicyHolderUser,
             replacePolicyHolderUser,
@@ -73,7 +72,9 @@ class UpdatePolicyHolderUserDialog extends Component {
                 }).slice(ZERO, MAX_CLIENTMUTATIONLABEL_LENGTH)
             );
         }
-        onSave();
+        // No refetch here: it would race the mutation and could read the row unchanged.
+        // The row carries the mutation's id (reducer), and the searcher reads its page
+        // again once the journal shows that mutation done.
         this.handleClose();
     };
 
