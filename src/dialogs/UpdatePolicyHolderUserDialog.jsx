@@ -129,7 +129,7 @@ class UpdatePolicyHolderUserDialog extends Component {
                         {isReplacing ? (
                             <FormattedMessage module="policyHolder" id="policyHolderUser.dialog.replace.title" />
                         ) : (
-                            <FormattedMessage module="policyHolder" id="policyHolderUser.dialog.edit.title" />
+                            <FormattedMessage module="policyHolder" id="policyHolderUser.dialog.update.title" />
                         )}
                     </DialogTitle>
                     <DialogContent>
