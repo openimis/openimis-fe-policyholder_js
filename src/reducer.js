@@ -10,6 +10,20 @@ import {
 } from "@openimis/fe-core";
 import { ECONOMIC_UNIT_STORAGE_KEY } from "./constants";
 
+// Stamps the policy holder users under mutation (meta.uuids) with the mutation's id, on
+// copies: fe-core's Searcher reads its page again when the journal shows that mutation
+// done, so the list shows the saved row instead of racing the mutation with a refetch.
+function lockMutated(state, meta) {
+  const ids = meta?.uuids;
+  if (!ids?.length || !Array.isArray(state.policyHolderUsers)) return state;
+  return {
+    ...state,
+    policyHolderUsers: state.policyHolderUsers.map((r) =>
+      r && ids.includes(r.id) ? { ...r, clientMutationId: meta.clientMutationId } : r,
+    ),
+  };
+}
+
 function reducer(
   state = {
     fetchingPolicyHolders: false,
@@ -428,12 +442,12 @@ function reducer(
         economicUnit: action.payload,
       };
     case "POLICYHOLDER_MUTATION_REQ":
-      return dispatchMutationReq({
+      return lockMutated(dispatchMutationReq({
         ...state,
         policyholderMutationReq: true,
         policyholderMutationErr: false,
         policyholderMutationResp: false,
-        }, action);
+        }, action), action.meta);
     case "POLICYHOLDER_MUTATION_ERR":
       return dispatchMutationErr({
         ...state,
@@ -482,13 +496,6 @@ function reducer(
         policyholderUpdatePolicyholderReq: false,
         policyholderUpdatePolicyholderResp: true,
         policyholderUpdatePolicyholderErr: false,
-      }, "updatePolicyHolder", action);
-    case "POLICYHOLDER_UPDATE_POLICYHOLDER_RESP":
-      return dispatchMutationResp({
-        ...state,
-        policyholderUpdatePolicyholderReq: false,
-        policyholderUpdatePolicyholderResp: false,
-        policyholderUpdatePolicyholderErr: true,
       }, "updatePolicyHolder", action);
     case "POLICYHOLDER_DELETE_POLICYHOLDER_REQ":
       return dispatchMutationResp({
@@ -545,13 +552,6 @@ function reducer(
         policyholderUpdatePolicyholderinsureeReq: false,
         policyholderUpdatePolicyholderinsureeResp: true,
         policyholderUpdatePolicyholderinsureeErr: false,
-      }, "updatePolicyHolderInsuree", action);
-    case "POLICYHOLDER_UPDATE_POLICYHOLDERINSUREE_RESP":
-      return dispatchMutationResp({
-        ...state,
-        policyholderUpdatePolicyholderinsureeReq: false,
-        policyholderUpdatePolicyholderinsureeResp: false,
-        policyholderUpdatePolicyholderinsureeErr: true,
       }, "updatePolicyHolderInsuree", action);
     case "POLICYHOLDER_DELETE_POLICYHOLDERINSUREE_REQ":
       return dispatchMutationResp({

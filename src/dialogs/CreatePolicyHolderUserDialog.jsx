@@ -41,16 +41,15 @@ class CreatePolicyHolderUserDialog extends Component {
         policyHolderUser: {}
     }
 
+    // Only a predefined policy holder is filled in from the list. `policyHolders` is mapped
+    // afresh on every store update, so overwriting here without one cleared the policy
+    // holder the user had just picked whenever anything else was dispatched.
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.policyHolders !== this.props.policyHolders) {
-            this.setState((state, props) => ({
-                policyHolderUser: {
-                    ...state.policyHolderUser,
-                    policyHolder: props.policyHolders.find(
-                        policyHolder => policyHolder.id === props.predefinedPolicyHolderId
-                    )
-                }
-            }));
+        const { policyHolders, predefinedPolicyHolderId } = this.props;
+        if (!predefinedPolicyHolderId || prevProps.policyHolders === policyHolders) return;
+        const predefined = policyHolders.find((policyHolder) => policyHolder.id === predefinedPolicyHolderId);
+        if (!!predefined && predefined.id !== this.state.policyHolderUser.policyHolder?.id) {
+            this.updateAttribute("policyHolder", predefined);
         }
     }
 
@@ -176,5 +175,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderUser }, dispatch);
 };
 
-export { StyledItem };
+export { StyledItem, CreatePolicyHolderUserDialog };
 export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(CreatePolicyHolderUserDialog));

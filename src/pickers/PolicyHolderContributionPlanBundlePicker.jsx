@@ -28,6 +28,11 @@ class PolicyHolderContributionPlanBundlePicker extends Component {
                 label: `${v.code} - ${v.name}`
             }))
         ] : [];
+        // The list holds the policy holder's current bundles only: a row of a deleted or
+        // replaced assignment still has to show its bundle.
+        if (!!value && !options.some(o => o.value?.id === value.id)) {
+            options.push({ value, label: `${value.code} - ${value.name}` });
+        }
         if (withNull) {
             options.unshift({
                 value: null,
