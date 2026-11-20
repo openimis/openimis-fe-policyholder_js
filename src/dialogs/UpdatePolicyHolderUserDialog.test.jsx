@@ -11,6 +11,7 @@ const translate = (module, id) => messages[`${module}.${id}`] ?? `${module}.${id
 vi.mock("@openimis/fe-core", async () => {
   const h = (await import("react")).createElement;
   return {
+    injectIntl: (await import("@openimis/fe-core/testing")).injectIntl,
     GetIconComponent: (name) => () => h("span", null, name),
     FormattedMessage: ({ module, id }) => translate(module, id),
     formatMessage: (intl, module, id) => translate(module, id),

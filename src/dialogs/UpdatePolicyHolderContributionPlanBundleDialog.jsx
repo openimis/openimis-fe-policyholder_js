@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { GetIconComponent } from "@openimis/fe-core";
+import { GetIconComponent, injectIntl } from "@openimis/fe-core";
 
 const EditIcon = GetIconComponent("Edit")
 
@@ -13,13 +13,12 @@ import { FormattedMessage, formatMessageWithValues, PublishedComponent, formatMe
 import { Grid, Tooltip, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { updatePolicyHolderContributionPlanBundle, replacePolicyHolderContributionPlanBundle } from "../actions";
-import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ZERO, MAX_CLIENTMUTATIONLABEL_LENGTH } from "../constants"
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme?.paper?.item ?? {}
+  ...(theme?.paper?.item ?? {})
 }));
 
 class UpdatePolicyHolderContributionPlanBundleDialog extends Component {

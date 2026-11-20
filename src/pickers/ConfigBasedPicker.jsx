@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { SelectInput } from "@openimis/fe-core";
+import { SelectInput, injectIntl } from "@openimis/fe-core";
 import { formatMessage } from "@openimis/fe-core";
-import { injectIntl } from "react-intl";
 
 class ConfigBasedPicker extends Component {
     render() {

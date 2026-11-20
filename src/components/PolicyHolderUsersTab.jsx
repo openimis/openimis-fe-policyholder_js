@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { Tab, Grid, Typography } from "@mui/material";
-import { formatMessage, PublishedComponent, FormattedMessage, decodeId } from "@openimis/fe-core";
+import { Grid, Typography } from "@mui/material";
+import { formatMessage, PublishedComponent, FormattedMessage, decodeId, Tab } from "@openimis/fe-core";
 import {
     RIGHT_POLICYHOLDERUSER_CREATE,
     RIGHT_POLICYHOLDERUSER_SEARCH,
@@ -58,50 +58,48 @@ class PolicyHolderUsersTab extends Component {
 
     render() {
         const { rights, value, isTabsEnabled, policyHolder } = this.props;
-        return (
-            [RIGHT_POLICYHOLDERUSER_SEARCH, RIGHT_PORTALPOLICYHOLDERUSER_SEARCH].some((right) =>
-                rights.includes(right)
-            ) && (
-                <PublishedComponent
-                    pubRef="policyHolder.TabPanel"
-                    module="policyHolder"
-                    index={POLICYHOLDERUSER_TAB_VALUE}
-                    value={value}
-                >
-                    {isTabsEnabled && (
-                        <Fragment>
-                            {[RIGHT_POLICYHOLDERUSER_CREATE, RIGHT_PORTALPOLICYHOLDERUSER_CREATE].some((right) =>
-                                rights.includes(right)
-                            ) && (
-                                <Grid container justify="flex-end" alignItems="center" spacing={1}>
-                                    <Grid>
-                                        <Typography>
-                                            <FormattedMessage
-                                                module="policyHolder"
-                                                id="policyHolderUser.createPolicyHolderUser"
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid>
-                                        <CreatePolicyHolderUserDialog
-                                            onSave={this.onSave}
-                                            tabView
-                                            predefinedPolicyHolderId={decodeId(policyHolder.id)}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            )}
-                            <PolicyHolderUserSearcher
-                                rights={rights}
-                                reset={this.state.reset}
-                                onSave={this.onSave}
-                                predefinedPolicyHolderId={decodeId(policyHolder.id)}
-                            />
-                        </Fragment>
+        return ([RIGHT_POLICYHOLDERUSER_SEARCH, RIGHT_PORTALPOLICYHOLDERUSER_SEARCH].some((right) =>
+            rights.includes(right)
+        ) && (<PublishedComponent
+            pubRef="policyHolder.TabPanel"
+            module="policyHolder"
+            index={POLICYHOLDERUSER_TAB_VALUE}
+            value={value}
+        >
+            {isTabsEnabled && (
+                <Fragment>
+                    {[RIGHT_POLICYHOLDERUSER_CREATE, RIGHT_PORTALPOLICYHOLDERUSER_CREATE].some((right) =>
+                        rights.includes(right)
+                    ) && (
+                        <Grid container justify="flex-end" spacing={1} sx={{
+                            alignItems: "center"
+                        }}>
+                            <Grid>
+                                <Typography>
+                                    <FormattedMessage
+                                        module="policyHolder"
+                                        id="policyHolderUser.createPolicyHolderUser"
+                                    />
+                                </Typography>
+                            </Grid>
+                            <Grid>
+                                <CreatePolicyHolderUserDialog
+                                    onSave={this.onSave}
+                                    tabView
+                                    predefinedPolicyHolderId={decodeId(policyHolder.id)}
+                                />
+                            </Grid>
+                        </Grid>
                     )}
-                </PublishedComponent>
-            )
-        );
+                    <PolicyHolderUserSearcher
+                        rights={rights}
+                        reset={this.state.reset}
+                        onSave={this.onSave}
+                        predefinedPolicyHolderId={decodeId(policyHolder.id)}
+                    />
+                </Fragment>
+            )}
+        </PublishedComponent>));
     }
 }
 
