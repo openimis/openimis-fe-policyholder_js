@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { GetIconComponent } from "@openimis/fe-core";
+import { GetIconComponent, injectIntl } from "@openimis/fe-core";
 
 const AddIcon = GetIconComponent("Add")
 
@@ -12,13 +12,12 @@ import { FormattedMessage, formatMessageWithValues, PublishedComponent } from "@
 import { Fab, Grid } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { createPolicyHolderContributionPlanBundle } from "../actions";
-import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ZERO, MAX_CLIENTMUTATIONLABEL_LENGTH } from "../constants"
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme?.paper?.item ?? {}
+  ...(theme?.paper?.item ?? {})
 }));
 
 class CreatePolicyHolderContributionPlanBundleDialog extends Component {

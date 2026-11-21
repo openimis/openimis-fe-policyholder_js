@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { injectIntl } from "react-intl";
 import {
   withModulesManager,
   formatMessageWithValues,
@@ -11,6 +10,7 @@ import {
   formatMessage,
   PublishedComponent,
   decodeId,
+  injectIntl,
 } from "@openimis/fe-core";
 import { IconButton } from "@mui/material";
 import { GetIconComponent } from "@openimis/fe-core";

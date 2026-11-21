@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { connect } from "react-redux";
-import { injectIntl } from "react-intl";
 
 import { styled } from "@mui/material/styles";
 import { Grid, Divider, Typography } from "@mui/material";
@@ -14,6 +13,7 @@ import {
   TextAreaInput,
   FormattedMessage,
   PublishedComponent,
+  injectIntl,
 } from "@openimis/fe-core";
 import {
   policyHolderCodeClear,
@@ -32,11 +32,11 @@ import {
 } from "../constants";
 
 const StyledTableTitle = styled('div')(({ theme }) => ({
-  ...theme?.table?.title ?? {},
+  ...(theme?.table?.title ?? {}),
 }));
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme?.paper?.item ?? {},
+  ...(theme?.paper?.item ?? {}),
 }));
 
 const StyledFullHeight = styled('div')(({ theme }) => ({

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { withModulesManager, formatMessageWithValues, withHistory, historyPush } from "@openimis/fe-core";
-import { injectIntl } from "react-intl";
+import { withModulesManager, formatMessageWithValues, withHistory, historyPush, injectIntl } from "@openimis/fe-core";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { styled } from "@mui/material/styles";
@@ -15,7 +15,7 @@ import {
 } from "../constants";
 
 const StyledPage = styled('div')(({ theme }) => ({
-  ...theme?.page ?? {},
+  ...(theme?.page ?? {}),
 }));
 
 class PolicyHolderPage extends Component {
