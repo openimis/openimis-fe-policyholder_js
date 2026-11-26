@@ -63,7 +63,7 @@ class PolicyHolderUsersTab extends Component {
                 rights.includes(right)
             ) && (
                 <PublishedComponent
-                    pubRef="policyHolder.TabPanel"
+                    pubRef="core.TabPanel"
                     module="policyHolder"
                     index={POLICYHOLDERUSER_TAB_VALUE}
                     value={value}

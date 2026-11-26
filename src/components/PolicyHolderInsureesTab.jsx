@@ -60,7 +60,7 @@ class PolicyHolderInsureesTab extends Component {
             (rights.includes(RIGHT_POLICYHOLDERINSUREE_SEARCH) ||
                 rights.includes(RIGHT_PORTALPOLICYHOLDERINSUREE_SEARCH)) && (
                 <PublishedComponent
-                    pubRef="policyHolder.TabPanel"
+                    pubRef="core.TabPanel"
                     module="policyHolder"
                     index={POLICYHOLDERINSUREE_TAB_VALUE}
                     value={value}
