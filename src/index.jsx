@@ -1,6 +1,6 @@
 import React from "react";
 
-import { GetIconComponent, FormattedMessage } from "@openimis/fe-core";
+import { GetIconComponent, FormattedMessage, TabPanel } from "@openimis/fe-core";
 import messages_en from "./translations/en.json";
 import PolicyHoldersPage from "./pages/PolicyHoldersPage";
 import PolicyHolderPage from "./pages/PolicyHolderPage";
@@ -13,7 +13,6 @@ import {
     RIGHT_PORTALPOLICYHOLDERUSER_SEARCH,
     RIGHT_PORTALPOLICYHOLDER_SEARCH
 } from "./constants";
-import TabPanel from "./components/TabPanel";
 import {
     PolicyHolderInsureesTabLabel,
     PolicyHolderInsureesTabPanel
@@ -48,6 +47,7 @@ const DEFAULT_CONFIG = {
         { key: "policyHolder.LegalFormPicker", ref: LegalFormPicker },
         { key: "policyHolder.ActivityCodePicker", ref: ActivityCodePicker },
         { key: "policyHolder.ConfigBasedPicker", ref: ConfigBasedPicker },
+        // Kept for modules not yet on core.TabPanel (OP-3349).
         { key: "policyHolder.TabPanel", ref: TabPanel },
         { key: "policyHolder.PolicyHolderPicker", ref: PolicyHolderPicker },
         { key: "policyHolder.PolicyHolderPicker.projection", ref: POLICYHOLDER_PICKER_PROJECTION },

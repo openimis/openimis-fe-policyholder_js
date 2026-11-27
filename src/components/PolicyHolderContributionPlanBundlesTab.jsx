@@ -56,7 +56,7 @@ class PolicyHolderContributionPlanBundlesTab extends Component {
     render() {
         const { rights, value, isTabsEnabled, policyHolder } = this.props;
         return ((rights.includes(RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH) || rights.includes(RIGHT_PORTALPOLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH)) && (<PublishedComponent
-            pubRef="policyHolder.TabPanel"
+            pubRef="core.TabPanel"
             module="policyHolder"
             index={POLICYHOLDERCONTRIBUTIONPLANBUNDLE_TAB_VALUE}
             value={value}

@@ -29,6 +29,7 @@ None
 * `policyHolder.PolicyHolderPicker`, picker for Policy Holder
 * `policyHolder.PolicyHolderInsureePicker`, picker for Policy Holder Insuree
 * `policyHolder.PolicyHolderContributionPlanBundlePicker`, picker for Policy Holder Contribution Plan Bundle
+* `policyHolder.TabPanel`, deprecated alias of fe-core's `core.TabPanel`, kept for modules not yet migrated. Use `core.TabPanel`.
 
 ## Dispatched Redux Actions
 * `POLICYHOLDER_POLICYHOLDERS_{REQ|RESP|ERR}`, fetching Policy Holders (as triggered by the searcher)

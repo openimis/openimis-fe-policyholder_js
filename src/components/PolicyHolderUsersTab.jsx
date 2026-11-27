@@ -61,7 +61,7 @@ class PolicyHolderUsersTab extends Component {
         return ([RIGHT_POLICYHOLDERUSER_SEARCH, RIGHT_PORTALPOLICYHOLDERUSER_SEARCH].some((right) =>
             rights.includes(right)
         ) && (<PublishedComponent
-            pubRef="policyHolder.TabPanel"
+            pubRef="core.TabPanel"
             module="policyHolder"
             index={POLICYHOLDERUSER_TAB_VALUE}
             value={value}
