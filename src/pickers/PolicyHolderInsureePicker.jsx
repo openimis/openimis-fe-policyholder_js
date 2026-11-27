@@ -59,13 +59,15 @@ class PolicyHolderInsureePicker extends Component {
                 value={!!value ? value : null}
                 onChange={onChange}
                 readOnly={readOnly}
+                loading={this.props.fetching}
             />
         )
     }
 }
 
 const mapStateToProps = state => ({
-    pickerPolicyHolderInsurees: state.policyHolder.pickerPolicyHolderInsurees
+    pickerPolicyHolderInsurees: state.policyHolder.pickerPolicyHolderInsurees,
+    fetching: state.policyHolder.fetchingPickerPolicyHolderInsurees,
 });
 
 const mapDispatchToProps = dispatch => {

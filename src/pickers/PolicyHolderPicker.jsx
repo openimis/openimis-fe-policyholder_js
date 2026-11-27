@@ -51,6 +51,7 @@ class PolicyHolderPicker extends Component {
                 value={this.selectedOption(value, policyHolders)}
                 onChange={onChange}
                 readOnly={readOnly}
+                loading={this.props.fetching}
             />
         )
     }
@@ -61,6 +62,7 @@ const mapStateToProps = (state) => ({
         id: decodeId(encodedId),
         ...other,
     })),
+    fetching: state.policyHolder.fetchingPolicyHolders,
 });
 
 const mapDispatchToProps = dispatch => {
