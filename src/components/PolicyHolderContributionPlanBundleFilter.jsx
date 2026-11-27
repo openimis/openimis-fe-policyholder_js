@@ -1,7 +1,6 @@
 import React, { Component } from "react"
-import { injectIntl } from 'react-intl';
 import { connect } from "react-redux";
-import { withModulesManager, formatMessage, PublishedComponent, decodeId, GRID_RESPONSIVE_STANDARD, GRID_RESPONSIVE_SMALL } from "@openimis/fe-core";
+import { withModulesManager, formatMessage, PublishedComponent, decodeId, GRID_RESPONSIVE_STANDARD, GRID_RESPONSIVE_SMALL, injectIntl } from "@openimis/fe-core";
 import { Grid, FormControlLabel, Checkbox } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { GREATER_OR_EQUAL_LOOKUP, LESS_OR_EQUAL_LOOKUP, DATE_TO_DATETIME_SUFFIX } from "../constants"

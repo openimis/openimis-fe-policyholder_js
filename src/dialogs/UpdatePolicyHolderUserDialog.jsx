@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { GetIconComponent } from "@openimis/fe-core";
+import { GetIconComponent, injectIntl } from "@openimis/fe-core";
 
 const EditIcon = GetIconComponent("Edit")
 
@@ -19,7 +19,6 @@ import { IconButton, Grid, Tooltip } from "@mui/material";
 import PolicyHolderPicker from "../pickers/PolicyHolderPicker";
 import { styled } from "@mui/material/styles";
 import { updatePolicyHolderUser, replacePolicyHolderUser } from "../actions";
-import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -28,11 +27,11 @@ import {
 } from "../constants";
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme?.paper?.item ?? {}
+  ...theme?.paper?.item
 }));
 
 const StyledFab = styled('div')(({ theme }) => ({
-  ...theme?.fab ?? {}
+  ...theme?.fab
 }));
 
 class UpdatePolicyHolderUserDialog extends Component {

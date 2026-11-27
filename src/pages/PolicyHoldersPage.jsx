@@ -8,8 +8,8 @@ import {
   historyPush,
   Helmet,
   clearCurrentPaginationPage,
+  injectIntl,
 } from "@openimis/fe-core";
-import { injectIntl } from "react-intl";
 import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import {
@@ -26,11 +26,11 @@ const AddIcon = GetIconComponent("Add")
 import { decodeId } from "@openimis/fe-core";
 
 const StyledPage = styled('div')(({ theme }) => ({
-  ...theme?.page ?? {},
+  ...(theme?.page ?? {}),
 }));
 
 const StyledFab = styled('div')(({ theme }) => ({
-  ...theme?.fab ?? {},
+  ...(theme?.fab ?? {}),
 }));
 
 class PolicyHoldersPage extends Component {
