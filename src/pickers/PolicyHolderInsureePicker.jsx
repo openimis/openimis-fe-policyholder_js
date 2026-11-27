@@ -39,6 +39,11 @@ class PolicyHolderInsureePicker extends Component {
                 label: `${v.insuree.lastName} ${v.insuree.otherNames}`
             }))
         ];
+        // The list holds the policy holder's current insurees only: a row of a deleted
+        // policy holder insuree still has to show its insuree.
+        if (!!value && !options.some(o => o.value?.id === value.id)) {
+            options.push({ value, label: `${value.lastName} ${value.otherNames}` });
+        }
         if (withNull) {
             options.unshift({
                 value: null,

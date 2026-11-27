@@ -1,7 +1,7 @@
 import React from "react";
 import { Paper, Grid } from "@mui/material";
-import { withModulesManager, FormPanel, Contributions } from "@openimis/fe-core";
-import { injectIntl } from "react-intl";
+import { withModulesManager, FormPanel, Contributions, injectIntl } from "@openimis/fe-core";
+
 import { styled } from "@mui/material/styles";
 import {
     RIGHT_POLICYHOLDERINSUREE_SEARCH,
@@ -10,9 +10,9 @@ import {
 } from "../constants";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
-  ...theme?.paper?.paper ?? {},
+  ...(theme?.paper?.paper ?? {}),
   '& .tableTitle': {
-    ...theme?.table?.title ?? {},
+    ...(theme?.table?.title ?? {}),
     padding: 0
   },
   '& .selectedTab': {

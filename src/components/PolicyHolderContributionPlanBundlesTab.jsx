@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { Tab, Grid, Typography } from "@mui/material";
-import { formatMessage, PublishedComponent, FormattedMessage } from "@openimis/fe-core";
+import { Grid, Typography } from "@mui/material";
+import { formatMessage, PublishedComponent, FormattedMessage, Tab } from "@openimis/fe-core";
 import {
     POLICYHOLDERCONTRIBUTIONPLANBUNDLE_TAB_VALUE,
     RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH,
@@ -55,44 +55,41 @@ class PolicyHolderContributionPlanBundlesTab extends Component {
 
     render() {
         const { rights, value, isTabsEnabled, policyHolder } = this.props;
-        return (
-            (rights.includes(RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH) ||
-                rights.includes(RIGHT_PORTALPOLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH)) && (
-                <PublishedComponent
-                    pubRef="core.TabPanel"
-                    module="policyHolder"
-                    index={POLICYHOLDERCONTRIBUTIONPLANBUNDLE_TAB_VALUE}
-                    value={value}
-                >
-                    {isTabsEnabled && (
-                        <Fragment>
-                            {rights.includes(RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_CREATE) && (
-                                <Grid container justify="flex-end" alignItems="center" spacing={1}>
-                                    <Grid>
-                                        <Typography>
-                                            <FormattedMessage module="policyHolder" id="policyHolderContributionPlanBundle.createPolicyHolderContributionPlanBundle" />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid>
-                                        <CreatePolicyHolderContributionPlanBundleDialog
-                                            policyHolder={policyHolder}
-                                            onSave={() => {}}
-                                            tabView
-                                        />
-                                    </Grid>
-                                </Grid>
-                            )}
-                            <PolicyHolderContributionPlanBundleSearcher
-                                policyHolder={policyHolder}
-                                rights={rights}
-                                reset={this.state.reset}
-                                onSave={this.onSave}
-                            />
-                        </Fragment>
+        return ((rights.includes(RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH) || rights.includes(RIGHT_PORTALPOLICYHOLDERCONTRIBUTIONPLANBUNDLE_SEARCH)) && (<PublishedComponent
+            pubRef="core.TabPanel"
+            module="policyHolder"
+            index={POLICYHOLDERCONTRIBUTIONPLANBUNDLE_TAB_VALUE}
+            value={value}
+        >
+            {isTabsEnabled && (
+                <Fragment>
+                    {rights.includes(RIGHT_POLICYHOLDERCONTRIBUTIONPLANBUNDLE_CREATE) && (
+                        <Grid container justify="flex-end" spacing={1} sx={{
+                            alignItems: "center"
+                        }}>
+                            <Grid>
+                                <Typography>
+                                    <FormattedMessage module="policyHolder" id="policyHolderContributionPlanBundle.createPolicyHolderContributionPlanBundle" />
+                                </Typography>
+                            </Grid>
+                            <Grid>
+                                <CreatePolicyHolderContributionPlanBundleDialog
+                                    policyHolder={policyHolder}
+                                    onSave={() => {}}
+                                    tabView
+                                />
+                            </Grid>
+                        </Grid>
                     )}
-                </PublishedComponent>
-            )
-        )
+                    <PolicyHolderContributionPlanBundleSearcher
+                        policyHolder={policyHolder}
+                        rights={rights}
+                        reset={this.state.reset}
+                        onSave={this.onSave}
+                    />
+                </Fragment>
+            )}
+        </PublishedComponent>));
     }
 }
 

@@ -4,8 +4,8 @@ import {
   formatMessage,
   Helmet,
   clearCurrentPaginationPage,
+  injectIntl,
 } from "@openimis/fe-core";
-import { injectIntl } from "react-intl";
 import { styled } from "@mui/material/styles";
 import { connect } from "react-redux";
 import PolicyHolderUserSearcher from "../components/PolicyHolderUserSearcher";
@@ -18,7 +18,7 @@ import {
 } from "../constants";
 
 const StyledPage = styled('div')(({ theme }) => ({
-  ...theme.page ?? {},
+  ...(theme.page ?? {}),
 }));
 
 class PolicyHolderUsersPage extends Component {

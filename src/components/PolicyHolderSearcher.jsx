@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import { injectIntl } from "react-intl";
 import {
   withModulesManager,
   formatMessage,
@@ -10,6 +9,7 @@ import {
   Searcher,
   PublishedComponent,
   GetIconComponent,
+  injectIntl,
 } from "@openimis/fe-core";
 import PolicyHolderFilter from "./PolicyHolderFilter";
 import { fetchPolicyHolders, deletePolicyHolder } from "../actions";

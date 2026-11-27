@@ -738,6 +738,7 @@ export function updatePolicyHolderUser(policyHolderUser, clientMutationLabel) {
       clientMutationId: mutation.clientMutationId,
       clientMutationLabel,
       requestedDateTime,
+      uuids: [policyHolderUser.id],
     }
   );
 }
@@ -788,6 +789,7 @@ export function replacePolicyHolderUser(policyHolderUser, clientMutationLabel) {
       clientMutationId: mutation.clientMutationId,
       clientMutationLabel,
       requestedDateTime,
+      uuids: [policyHolderUser.id],
     }
   );
 }
