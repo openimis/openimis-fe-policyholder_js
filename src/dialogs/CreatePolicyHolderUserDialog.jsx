@@ -4,7 +4,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import { GetIconComponent } from "@openimis/fe-core";
+import { GetIconComponent, injectIntl } from "@openimis/fe-core";
 
 const AddIcon = GetIconComponent("Add")
 
@@ -19,7 +19,6 @@ import { Fab, Grid, Tooltip } from "@mui/material";
 import PolicyHolderPicker from "../pickers/PolicyHolderPicker";
 import { styled } from "@mui/material/styles";
 import { createPolicyHolderUser } from "../actions";
-import { injectIntl } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -28,11 +27,11 @@ import {
 } from "../constants";
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme?.paper?.item ?? {}
+  ...theme?.paper?.item
 }));
 
 const StyledFab = styled('div')(({ theme }) => ({
-  ...theme?.fab ?? {}
+  ...theme?.fab
 }));
 
 class CreatePolicyHolderUserDialog extends Component {
@@ -41,16 +40,15 @@ class CreatePolicyHolderUserDialog extends Component {
         policyHolderUser: {}
     }
 
+    // Only a predefined policy holder is filled in from the list. `policyHolders` is mapped
+    // afresh on every store update, so overwriting here without one cleared the policy
+    // holder the user had just picked whenever anything else was dispatched.
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.policyHolders !== this.props.policyHolders) {
-            this.setState((state, props) => ({
-                policyHolderUser: {
-                    ...state.policyHolderUser,
-                    policyHolder: props.policyHolders.find(
-                        policyHolder => policyHolder.id === props.predefinedPolicyHolderId
-                    )
-                }
-            }));
+        const { policyHolders, predefinedPolicyHolderId } = this.props;
+        if (!predefinedPolicyHolderId || prevProps.policyHolders === policyHolders) return;
+        const predefined = policyHolders.find((policyHolder) => policyHolder.id === predefinedPolicyHolderId);
+        if (!!predefined && predefined.id !== this.state.policyHolderUser.policyHolder?.id) {
+            this.updateAttribute("policyHolder", predefined);
         }
     }
 
@@ -176,5 +174,5 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({ createPolicyHolderUser }, dispatch);
 };
 
-export { StyledItem };
+export { StyledItem, CreatePolicyHolderUserDialog };
 export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(CreatePolicyHolderUserDialog));

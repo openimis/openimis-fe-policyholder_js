@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { injectIntl } from "react-intl";
 import _ from "lodash";
 
 import { styled } from "@mui/material/styles";
@@ -15,6 +14,7 @@ import {
   journalize,
   Helmet,
   decodeId,
+  injectIntl,
 } from "@openimis/fe-core";
 import { fetchPolicyHolder, clearPolicyHolder, clearPolicyHolderInsurees } from "../actions";
 import {
@@ -26,19 +26,19 @@ import PolicyHolderGeneralInfoPanel from "./PolicyHolderGeneralInfoPanel";
 import PolicyHolderTabPanel from "./PolicyHolderTabPanel";
 
 const StyledPaper = styled('div')(({ theme }) => ({
-  ...theme?.paper?.paper ?? {},
+  ...(theme?.paper?.paper ?? {}),
 }));
 
 const StyledPaperHeader = styled('div')(({ theme }) => ({
-  ...theme?.paper?.header ?? {},
+  ...(theme?.paper?.header ?? {}),
 }));
 
 const StyledPaperHeaderAction = styled('div')(({ theme }) => ({
-  ...theme?.paper?.action ?? {},
+  ...(theme?.paper?.action ?? {}),
 }));
 
 const StyledItem = styled('div')(({ theme }) => ({
-  ...theme?.paper?.item ?? {},
+  ...(theme?.paper?.item ?? {}),
 }));
 
 const jsonFields = ["address", "contactName", "bankAccount"];

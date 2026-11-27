@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { Tab, Grid, Typography } from "@mui/material";
-import { formatMessage, PublishedComponent, FormattedMessage } from "@openimis/fe-core";
+import { Grid, Typography } from "@mui/material";
+import { formatMessage, PublishedComponent, FormattedMessage, Tab } from "@openimis/fe-core";
 import {
     RIGHT_POLICYHOLDERINSUREE_CREATE,
     RIGHT_POLICYHOLDERINSUREE_SEARCH,
@@ -56,57 +56,54 @@ class PolicyHolderInsureesTab extends Component {
 
     render() {
         const { rights, value, isTabsEnabled, policyHolder } = this.props;
-        return (
-            (rights.includes(RIGHT_POLICYHOLDERINSUREE_SEARCH) ||
-                rights.includes(RIGHT_PORTALPOLICYHOLDERINSUREE_SEARCH)) && (
-                <PublishedComponent
-                    pubRef="policyHolder.TabPanel"
-                    module="policyHolder"
-                    index={POLICYHOLDERINSUREE_TAB_VALUE}
-                    value={value}
-                >
-                    {isTabsEnabled ? (
-                        <Fragment>
-                            {(rights.includes(RIGHT_POLICYHOLDERINSUREE_CREATE) ||
-                                rights.includes(RIGHT_PORTALPOLICYHOLDERINSUREE_CREATE)) && (
-                                <Grid
-                                    container
-                                    justify="flex-end"
-                                    alignItems="center"
-                                    spacing={1}
-                                >
-                                    <Grid>
-                                        <Typography>
-                                            <FormattedMessage
-                                                module="policyHolder"
-                                                id="policyHolderInsuree.createPolicyHolderInsuree"
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid>
-                                        <CreatePolicyHolderInsureeDialog
-                                            policyHolder={policyHolder}
-                                            onSave={this.onSave}
-                                        />
-                                    </Grid>
-                                </Grid>
-                            )}
-                            <PolicyHolderInsureeSearcher
-                                policyHolder={policyHolder}
-                                rights={rights}
-                                reset={this.state.reset}
-                                onSave={this.onSave}
-                            />
-                        </Fragment>
-                    ) : (
-                        <FormattedMessage
-                            module="policyHolder"
-                            id="policyHolderInsuree.tabDisabledError"
-                        />
+        return ((rights.includes(RIGHT_POLICYHOLDERINSUREE_SEARCH) || rights.includes(RIGHT_PORTALPOLICYHOLDERINSUREE_SEARCH)) && (<PublishedComponent
+            pubRef="policyHolder.TabPanel"
+            module="policyHolder"
+            index={POLICYHOLDERINSUREE_TAB_VALUE}
+            value={value}
+        >
+            {isTabsEnabled ? (
+                <Fragment>
+                    {(rights.includes(RIGHT_POLICYHOLDERINSUREE_CREATE) ||
+                        rights.includes(RIGHT_PORTALPOLICYHOLDERINSUREE_CREATE)) && (
+                        <Grid
+                            container
+                            justify="flex-end"
+                            spacing={1}
+                            sx={{
+                                alignItems: "center"
+                            }}
+                        >
+                            <Grid>
+                                <Typography>
+                                    <FormattedMessage
+                                        module="policyHolder"
+                                        id="policyHolderInsuree.createPolicyHolderInsuree"
+                                    />
+                                </Typography>
+                            </Grid>
+                            <Grid>
+                                <CreatePolicyHolderInsureeDialog
+                                    policyHolder={policyHolder}
+                                    onSave={this.onSave}
+                                />
+                            </Grid>
+                        </Grid>
                     )}
-                </PublishedComponent>
-            )
-        );
+                    <PolicyHolderInsureeSearcher
+                        policyHolder={policyHolder}
+                        rights={rights}
+                        reset={this.state.reset}
+                        onSave={this.onSave}
+                    />
+                </Fragment>
+            ) : (
+                <FormattedMessage
+                    module="policyHolder"
+                    id="policyHolderInsuree.tabDisabledError"
+                />
+            )}
+        </PublishedComponent>));
     }
 }
 
