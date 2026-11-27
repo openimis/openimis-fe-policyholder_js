@@ -48,13 +48,15 @@ class PolicyHolderContributionPlanBundlePicker extends Component {
                 value={!!value ? value : null}
                 onChange={onChange}
                 readOnly={readOnly}
+                loading={this.props.fetching}
             />
         )
     }
 }
 
 const mapStateToProps = state => ({
-    pickerPolicyHolderContributionPlanBundles: state.policyHolder.pickerPolicyHolderContributionPlanBundles
+    pickerPolicyHolderContributionPlanBundles: state.policyHolder.pickerPolicyHolderContributionPlanBundles,
+    fetching: state.policyHolder.fetchingPickerPolicyHolderContributionPlanBundles,
 });
 
 const mapDispatchToProps = dispatch => {
